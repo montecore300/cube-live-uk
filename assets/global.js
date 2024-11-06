@@ -634,14 +634,20 @@ class SliderComponent extends HTMLElement {
   }
 
   initPages() {
-    this.sliderItemsToShow = Array.from(this.sliderItems).filter((element) => element.clientWidth > 0);
-    if (this.sliderItemsToShow.length < 2) return;
-    this.sliderItemOffset = this.sliderItemsToShow[1].offsetLeft - this.sliderItemsToShow[0].offsetLeft;
-    this.slidesPerPage = Math.floor(
-      (this.slider.clientWidth - this.sliderItemsToShow[0].offsetLeft) / this.sliderItemOffset
-    );
-    this.totalPages = this.sliderItemsToShow.length - this.slidesPerPage + 1;
-    this.update();
+      this.sliderItemsToShow = Array.from(this.sliderItems).filter((element) => element.clientWidth > 0);
+      if (this.sliderItemsToShow.length < 2) return;
+      if (this.sliderItemsToShow[0] && this.sliderItemsToShow[1]) {
+          this.sliderItemOffset = this.sliderItemsToShow[1].offsetLeft - this.sliderItemsToShow[0].offsetLeft;
+
+          this.slidesPerPage = Math.floor(
+              (this.slider.clientWidth - this.sliderItemsToShow[0].offsetLeft) / this.sliderItemOffset
+          );
+
+          this.totalPages = this.sliderItemsToShow.length - this.slidesPerPage + 1;
+          this.update();
+      } else {
+          console.error("Slider items are not properly initialized.");
+      }
   }
 
   resetPages() {
@@ -689,8 +695,35 @@ class SliderComponent extends HTMLElement {
   }
 
   isSlideVisible(element, offset = 0) {
-    const lastVisibleSlide = this.slider.clientWidth + this.slider.scrollLeft - offset;
-    return element.offsetLeft + element.clientWidth <= lastVisibleSlide && element.offsetLeft >= this.slider.scrollLeft;
+      if (!element) {
+          console.error("Element is undefined in isSlideVisible", {
+              element,
+              sliderItemsToShow: this.sliderItemsToShow,
+              currentPage: this.currentPage,
+              sliderItemsCount: this.sliderItemsToShow ? this.sliderItemsToShow.length : 'undefined',
+              offset
+          });
+          return false;
+      }
+      const lastVisibleSlide = this.slider.clientWidth + this.slider.scrollLeft - offset;
+      return element.offsetLeft + element.clientWidth <= lastVisibleSlide && element.offsetLeft >= this.slider.scrollLeft;
+  }
+
+  setSlideVisibility() {
+      if (!this.sliderItemsToShow || this.sliderItemsToShow.length === 0) {
+          console.warn("No slider items found to set visibility.");
+          return;
+      }
+
+      this.sliderItemsToShow.forEach((item, index) => {
+          if (item) {
+              const isVisible = this.isSlideVisible(item);
+              console.log(`Slide ${index} visibility: ${isVisible}`);
+              item.classList.toggle('visible-slide', isVisible);
+          } else {
+              console.warn(`Undefined item at index ${index} in sliderItemsToShow`);
+          }
+      });
   }
 
   onButtonClick(event) {
@@ -710,6 +743,13 @@ class SliderComponent extends HTMLElement {
   }
 }
 
+
+
+
+
+
+
+
 customElements.define('slider-component', SliderComponent);
 
 class SlideshowComponent extends SliderComponent {
@@ -720,21 +760,27 @@ class SlideshowComponent extends SliderComponent {
 
     if (!this.sliderControlWrapper) return;
 
-    this.sliderFirstItemNode = this.slider.querySelector('.slideshow__slide');
-    if (this.sliderItemsToShow.length > 0) this.currentPage = 1;
+    // Initialize slider items after ensuring DOM is fully loaded
+    this.sliderItemsToShow = Array.from(this.querySelectorAll('.slideshow__slide')).filter(item => item && item.clientWidth > 0);
+
+    if (this.sliderItemsToShow.length > 0) {
+      this.currentPage = 1;
+      this.sliderFirstItemNode = this.sliderItemsToShow[0];
+      this.setSlideVisibility();
+    } else {
+      console.warn("Slider items are not properly initialized or visible.");
+    }
 
     this.announcementBarSlider = this.querySelector('.announcement-bar-slider');
-    // Value below should match --duration-announcement-bar CSS value
     this.announcerBarAnimationDelay = this.announcementBarSlider ? 250 : 0;
 
     this.sliderControlLinksArray = Array.from(this.sliderControlWrapper.querySelectorAll('.slider-counter__link'));
     this.sliderControlLinksArray.forEach((link) => link.addEventListener('click', this.linkToSlide.bind(this)));
+
     this.slider.addEventListener('scroll', this.setSlideVisibility.bind(this));
-    this.setSlideVisibility();
 
     if (this.announcementBarSlider) {
       this.announcementBarArrowButtonWasClicked = false;
-
       this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       this.reducedMotion.addEventListener('change', () => {
         if (this.slider.getAttribute('data-autoplay') === 'true') this.setAutoPlay();
@@ -807,7 +853,7 @@ class SlideshowComponent extends SliderComponent {
   update() {
     super.update();
     this.sliderControlButtons = this.querySelectorAll('.slider-counter__link');
-    this.prevButton.removeAttribute('disabled');
+    if (this.prevButton) this.prevButton.removeAttribute('disabled');
 
     if (!this.sliderControlButtons.length) return;
 
@@ -815,8 +861,11 @@ class SlideshowComponent extends SliderComponent {
       link.classList.remove('slider-counter__link--active');
       link.removeAttribute('aria-current');
     });
-    this.sliderControlButtons[this.currentPage - 1].classList.add('slider-counter__link--active');
-    this.sliderControlButtons[this.currentPage - 1].setAttribute('aria-current', true);
+
+    if (this.sliderControlButtons[this.currentPage - 1]) {
+      this.sliderControlButtons[this.currentPage - 1].classList.add('slider-counter__link--active');
+      this.sliderControlButtons[this.currentPage - 1].setAttribute('aria-current', true);
+    }
   }
 
   autoPlayToggle() {
@@ -873,13 +922,18 @@ class SlideshowComponent extends SliderComponent {
 
   autoRotateSlides() {
     const slideScrollPosition =
-      this.currentPage === this.sliderItems.length ? 0 : this.slider.scrollLeft + this.sliderItemOffset;
+      this.currentPage === this.sliderItemsToShow.length ? 0 : this.slider.scrollLeft + this.sliderItemOffset;
 
     this.setSlidePosition(slideScrollPosition);
     this.applyAnimationToAnnouncementBar();
   }
 
   setSlideVisibility(event) {
+    if (!this.sliderItemsToShow || this.sliderItemsToShow.length === 0) {
+      console.warn("No slider items found to set visibility.");
+      return;
+    }
+
     this.sliderItemsToShow.forEach((item, index) => {
       const linkElements = item.querySelectorAll('a');
       if (index === this.currentPage - 1) {
@@ -904,15 +958,15 @@ class SlideshowComponent extends SliderComponent {
   applyAnimationToAnnouncementBar(button = 'next') {
     if (!this.announcementBarSlider) return;
 
-    const itemsCount = this.sliderItems.length;
+    const itemsCount = this.sliderItemsToShow.length;
     const increment = button === 'next' ? 1 : -1;
 
     const currentIndex = this.currentPage - 1;
     let nextIndex = (currentIndex + increment) % itemsCount;
     nextIndex = nextIndex === -1 ? itemsCount - 1 : nextIndex;
 
-    const nextSlide = this.sliderItems[nextIndex];
-    const currentSlide = this.sliderItems[currentIndex];
+    const nextSlide = this.sliderItemsToShow[nextIndex];
+    const currentSlide = this.sliderItemsToShow[currentIndex];
 
     const animationClassIn = 'announcement-bar-slider--fade-in';
     const animationClassOut = 'announcement-bar-slider--fade-out';
@@ -943,6 +997,17 @@ class SlideshowComponent extends SliderComponent {
     });
   }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 customElements.define('slideshow-component', SlideshowComponent);
 

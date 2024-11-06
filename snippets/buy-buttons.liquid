@@ -47,7 +47,7 @@
       {%- form 'product',
         product,
         id: product_form_id,
-        class: 'form',
+        class: 'form w-full',
         novalidate: 'novalidate',
         data-type: 'add-to-cart-form'
       -%}
@@ -83,6 +83,7 @@
             {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
               disabled
             {% endif %}
+            style="background-color:#00B7ED;" 
           >
             <span>
               {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
@@ -98,6 +99,17 @@
           {%- endif -%}
         </div>
       {%- endform -%}
+        <div id="wishlist-button-placeholder">
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var wishlistButton = document.getElementById('shopify-block-wishlist_king_wishlist_button_block_KrjNiz');
+            var placeholder = document.getElementById('wishlist-button-placeholder');
+            if (wishlistButton && placeholder) {
+              placeholder.appendChild(wishlistButton);
+            }
+          });
+        </script>
     </product-form>
   {%- else -%}
     <div class="product-form">

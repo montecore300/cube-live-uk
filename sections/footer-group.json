@@ -14,54 +14,54 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "link_list_tipGVE": {
+        "footer-0": {
           "type": "link_list",
           "settings": {
-            "heading": "Service",
-            "menu": "service"
-          }
-        },
-        "link_list_FKpCdU": {
-          "type": "link_list",
-          "settings": {
-            "heading": "About CUBE Store UK",
+            "heading": "Klantenservice",
             "menu": "footer"
           }
         },
-        "link_list_KeTeeD": {
+        "62a9fac0-629a-4e53-8174-afdfee24cd39": {
           "type": "link_list",
           "settings": {
-            "heading": "Our store",
-            "menu": "our-store"
+            "heading": "CUBE Stores Nederland",
+            "menu": "cube-store"
           }
         },
-        "link_list_BPjdVB": {
+        "864197a1-7020-4ac5-84b0-ebe01cc4b410": {
           "type": "link_list",
           "settings": {
-            "heading": "Categories",
-            "menu": "categories"
+            "heading": "Onze winkels",
+            "menu": "onze-winkels"
+          }
+        },
+        "34401e09-f8cd-44e8-a4e9-6ff3898d7190": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Categorieën",
+            "menu": "categorieen"
           }
         }
       },
       "block_order": [
-        "link_list_tipGVE",
-        "link_list_FKpCdU",
-        "link_list_KeTeeD",
-        "link_list_BPjdVB"
+        "footer-0",
+        "62a9fac0-629a-4e53-8174-afdfee24cd39",
+        "864197a1-7020-4ac5-84b0-ebe01cc4b410",
+        "34401e09-f8cd-44e8-a4e9-6ff3898d7190"
       ],
       "settings": {
-        "color_scheme": "scheme-55e66c63-3d21-43ee-9c82-1df79c756ed2",
+        "color_scheme": "accent-1",
         "newsletter_enable": false,
-        "newsletter_heading": "Subscribe to our emails",
+        "newsletter_heading": "MIS ONZE LAATSTE NIEUWS, ACTIES EN TIPS NIET",
         "enable_follow_on_shop": false,
         "show_social": true,
         "enable_country_selector": false,
         "enable_language_selector": false,
         "payment_enable": false,
-        "show_policy": false,
+        "show_policy": true,
         "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 32,
+        "padding_bottom": 32
       }
     }
   },

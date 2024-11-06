@@ -119,6 +119,7 @@ details[open].menu-opening > .menu-drawer__submenu {
   padding: 1.1rem 3rem;
   text-decoration: none;
   font-size: 1.8rem;
+  color: #fff;
 }
 
 .no-js .menu-drawer__menu-item {
@@ -135,6 +136,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 
 .menu-drawer summary.menu-drawer__menu-item {
   padding-right: 5.2rem;
+  color: #fff;
 }
 
 .no-js .menu-drawer__menu-item .icon-caret {
@@ -194,6 +196,7 @@ details[open].menu-opening > .menu-drawer__submenu {
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   text-align: left;
+  color: #fff;
 }
 
 .no-js .menu-drawer__close-button {

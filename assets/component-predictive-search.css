@@ -25,17 +25,23 @@
   display: flex;
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
   padding-bottom: 1rem;
+  flex-direction: row-reverse;
+}
+
+.desktop-search .predictive-search.predictive-search--header {
+  background-color: #FFF;
 }
 
 @media screen and (max-width: 749px) {
   .predictive-search--header {
+    background-color: #FFF;
     right: 0;
     left: 0;
     top: 100%;
   }
 
   .predictive-search__results-groups-wrapper {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .predictive-search__results-groups-wrapper:not(.predictive-search__results-groups-wrapper--no-suggestions) {
@@ -97,6 +103,16 @@ predictive-search[loading] .predictive-search {
   color: rgba(var(--color-foreground), 0.7);
 }
 
+.predictive-search__pages-wrapper .link--text, 
+.link--text,
+.predictive-search__heading,
+.desk-search .predictive-search__heading,
+.predictive-search__item-heading,
+.predictive-search__item--term .icon-arrow,
+.predictive-search__item:hover { 
+  color: #000;
+}
+
 predictive-search .spinner {
   width: 1.5rem;
   height: 1.5rem;
@@ -128,8 +144,7 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
 
 .predictive-search__list-item[aria-selected='true'] > *,
 .predictive-search__list-item:hover > *,
-.predictive-search__item[aria-selected='true'],
-.predictive-search__item:hover {
+.predictive-search__item[aria-selected='true'] {
   color: rgb(var(--color-foreground));
   background-color: rgba(var(--color-foreground), 0.04);
 }
@@ -151,7 +166,7 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
 .predictive-search__item--link-with-thumbnail {
   display: grid;
   grid-template-columns: 5rem 1fr;
-  grid-column-gap: 2rem;
+  grid-column-gap: 1rem;
   grid-template-areas: 'product-image product-content';
 }
 
@@ -193,6 +208,11 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
 .predictive-search__item-vendor + .predictive-search__item-heading,
 .predictive-search .price {
   margin-top: 0.5rem;
+}
+
+.predictive-search__item-heading mark {
+  color: #000 !important;
+  opacity: 0.7;
 }
 
 .predictive-search__item--term {

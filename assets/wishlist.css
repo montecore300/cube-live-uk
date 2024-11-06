@@ -1,0 +1,108 @@
+@media (min-width: 1008px) {
+    wishlist-page .wk-grid {
+        --columns: 3 !important;
+    }
+}
+@media (min-width: 710px) {
+    wishlist-page .wk-grid {
+        --columns: var(--grid-columns-lg);
+    }
+}
+@media (min-width: 502px) {
+    wishlist-page .wk-grid {
+        --columns: var(--grid-columns-md);
+    }
+}
+@media (min-width: 380px) {
+    wishlist-page .wk-grid {
+        --columns: var(--grid-columns-sm);
+    }
+}
+
+wishlist-page .wk-grid {
+    grid-gap: 40px 2rem !important;
+}
+
+wishlist-page .wk-page {
+    max-width: 1600px !important;
+    margin: auto auto 40px auto !important;
+    padding: 0 !important;
+}
+
+wishlist-page .wk-header {
+    margin-top: 3rem !important;
+}
+
+remove-button .wk-floating .wk-button {
+    background-color: rgb(var(--color-background)) !important;
+    border: .1rem solid rgba(var(--color-foreground), .1) !important;
+    border-radius: 50% !important;
+    color: rgba(var(--color-foreground), .55) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 1.2rem !important;
+    width: 4rem !important;
+    top: auto !important;
+    right: auto !important; 
+}
+
+wishlist-product-card .wk-product-title .wk-text-link {
+    text-align: left !important;
+    font-weight: 800;
+    color: black !important;
+}
+
+wishlist-product-card .wk-image {
+   aspect-ratio: auto !important;
+   max-height: 100% !important;
+}
+
+wishlist-product-card .wk-price {
+    justify-content: left !important;
+}
+
+wishlist-product-card .wk-current-price {
+    font-size: 16px !important;
+    line-height: 24px !important;
+}
+
+wishlist-product-card .wk-meta {
+    margin: 14px 0 !important;
+}
+
+wishlist-product-card .wk-form {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    gap: 0.4rem !important;
+
+}
+wishlist-product-card .wk-variants {
+    margin-bottom: 0 !important;
+    width: 90px;
+}
+
+wishlist-product-card .wk-cta-button, 
+wishlist-product-card .wk-cta-button:disabled {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border: 0 !important;
+    padding: 0 1.5rem !important;
+    cursor: pointer !important;
+    font: inherit !important;
+    font-size: 1.5rem !important;
+    text-decoration: none !important;
+    color: rgb(var(--color-button-text)) !important;
+    transition: box-shadow var(--duration-short) ease !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    background-color: #1173B0 !important; 
+    border-radius: 4px !important;
+    font-size: 14px !important;
+}
+
+.wk-option-select .wk-control {
+    border-radius: 4px !important;
+}

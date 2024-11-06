@@ -1,0 +1,58 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="page-width product-link-building section-{{ section.id }}-padding">
+  {% if product.collections.size > 0 %}
+    {% for collection in product.collections %}
+      <a href="{{ collection.url }}">{{ collection.title }}</a>
+    {% endfor %}
+  {% else %}
+    <p>No collections found for this product.</p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Product Link Building",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Product link building",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

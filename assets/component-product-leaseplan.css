@@ -1,0 +1,34 @@
+.lease-link {
+  display: inline-block;
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: #00aaff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.lease-periods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-content: center;
+}
+
+.lease-block {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  flex: 1;
+}
+
+.lease-period {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.lease-price {
+  font-size: 16px;
+}

@@ -52,9 +52,15 @@
         class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
+        <div class="card__collections">
+          {%- assign black_friday_collection = card_product.collections | where: 'title', 'Black Friday' -%}
+          {%- if black_friday_collection.size > 0 -%}
+            <img class="black-friday-tag hidden" src="https://cdn.shopify.com/s/files/1/0602/4871/9579/files/cube-black-friday-label.png?v=1729685955" alt="black friday label" width="80px" height="auto">
+          {%- endif -%}
+        </div>
         {%- if card_product.featured_media -%}
           <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
-            <div class="media media--transparent media--hover-effect">
+            <div class="media media--transparent">
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img
                 srcset="
@@ -149,10 +155,14 @@
             <a
               href="{{ card_product.url }}"
               id="CardLink-{{ section_id }}-{{ card_product.id }}"
-              class="full-unstyled-link"
+              class="full-unstyled-link text-capitalize"
               aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }} Badge-{{ section_id }}-{{ card_product.id }}"
             >
-              {{ card_product.title | escape }}
+              {% if template.name == 'product' %}
+                {{ card_product.url | escape | replace: '-', ' ' | split: '?' | first | remove: '/products/' }}
+              {% else %}
+                {{ card_product.title | escape }}
+              {% endif %}  
             </a>
           </h3>
           <div class="card-information">
@@ -198,8 +208,47 @@
                 </span>
               </p>
             {%- endif -%}
-
-            {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+            <div class='flex space-between items-center'>
+              {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+              {% comment %} {% if template == 'product' %}
+                <div class="quick-add z-50">
+                  {%- if card_product.available == false -%}
+                    <button
+                      type="button"
+                      class="button pdp-quick-add"
+                      disabled
+                    >
+                      {% render 'icon-cart' %}
+                    </button>
+                  {%- elsif card_product.variants.size > 1 -%}
+                    <a
+                      href="{{ card_product.url }}"
+                      class="button pdp-quick-add"
+                    >
+                      {% render 'icon-cart' %}
+                    </a>
+                  {%- else -%}
+                    <product-form data-section-id="{{ section.id }}">
+                      {%- form 'product', card_product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                        <input
+                          type="hidden"
+                          name="id"
+                          value="{{ card_product.selected_or_first_available_variant.id }}"
+                          class="product-variant-id"
+                        >
+                        <button
+                          type="submit"
+                          name="add"
+                          class="button pdp-quick-add"
+                        >
+                          {% render 'icon-cart' %}
+                        </button>
+                      {%- endform -%}
+                    </product-form>
+                  {%- endif -%}
+                </div>
+              {% endif %} {% endcomment %}
+            </div>
             {%- if card_product.quantity_price_breaks_configured? -%}
               <div class="card__information-volume-pricing-note">
                 <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
@@ -339,7 +388,7 @@
         {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
         {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
       "
-      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+      style="--ratio-percent: 100%;"
     >
       <div
         class="card__inner{% if settings.card_style == 'standard' %} color-{{ settings.card_color_scheme }} gradient{% endif %} ratio"
@@ -365,6 +414,7 @@
               {{ 'onboarding.product_title' | t }}
             </a>
           </h3>
+          <div>
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>

@@ -1,0 +1,124 @@
+{% comment %}
+  Breadcrumbs Section
+{% endcomment %}
+
+{% assign breadcrumbs = "" %}
+{% assign add_separator = false %}
+
+{% if template contains 'product' %}
+  {% assign type = 'product' %}
+  {% assign title = product.title %}
+  {% assign handle = product.handle %}
+  {% if collection %}
+    {% assign collection_handle = collection.handle %}
+  {% else %}
+    {% assign collection_handle = product.collections.first.handle %}
+  {% endif %}
+  {% if collection_handle %}
+    {% assign breadcrumbs = breadcrumbs | append: '<li><a href="' | append: routes.collections_url | append: '/' | append: collection_handle | append: '" class="breadcrumb-link">' | append: collections[collection_handle].title | append: '</a></li>' %}
+    {% assign add_separator = true %}
+  {% endif %}
+  {% assign breadcrumbs = breadcrumbs | append: '<li class="breadcrumb-current">' | append: title | append: '</li>' %}
+  {% assign add_separator = true %}
+{% elsif template contains 'collection' %}
+  {% assign type = 'collection' %}
+  {% assign title = collection.title %}
+  {% assign handle = collection.handle %}
+  {% assign breadcrumbs = breadcrumbs | append: '<li class="breadcrumb-current">' | append: title | append: '</li>' %}
+  {% assign add_separator = true %}
+{% elsif template contains 'page' %}
+  {% assign type = 'page' %}
+  {% assign title = page.title %}
+  {% assign handle = page.handle %}
+  {% assign breadcrumbs = breadcrumbs | append: '<li class="breadcrumb-current">' | append: title | append: '</li>' %}
+  {% assign add_separator = true %}
+{% elsif template contains 'blog' %}
+  {% assign type = 'blog' %}
+  {% assign title = blog.title %}
+  {% assign handle = blog.handle %}
+  {% assign breadcrumbs = breadcrumbs | append: '<li class="breadcrumb-current">' | append: title | append: '</li>' %}
+  {% assign add_separator = true %}
+{% elsif template contains 'article' %}
+  {% assign type = 'article' %}
+  {% assign title = article.title %}
+  {% assign handle = article.handle %}
+  {% assign breadcrumbs = breadcrumbs | append: '<li><a href="' | append: routes.blogs_url | append: '/' | append: blog.handle | append: '" class="breadcrumb-link">' | append: blog.title | append: '</a></li>' %}
+  {% assign breadcrumbs = breadcrumbs | append: '<li class="breadcrumb-current">' | append: title | append: '</li>' %}
+  {% assign add_separator = true %}
+{% else %}
+  {% assign type = 'home' %}
+  {% assign title = 'Home' %}
+{% endif %}
+
+<nav class="breadcrumbs">
+  <ul>
+    {% unless section.settings.hide_home %}
+      <li><a href="{{ routes.root_url }}" class="breadcrumb-link">Home</a></li>
+      {% if add_separator %}
+        <li>&gt;</li>
+      {% endif %}
+    {% endunless %}
+    {{ breadcrumbs | replace: '</li><li', '</li><li>&gt;</li><li' }}
+  </ul>
+</nav>
+
+<style>
+  .breadcrumbs { display: none;}
+  @media screen and (min-width: 990px) {
+    .breadcrumbs { display: block; }
+  }
+  .breadcrumbs {
+    font-size: 14px;
+    max-width: var(--page-width);
+    margin: 14px auto 0 auto;
+    padding: 0 4.2rem;
+  }
+
+  .breadcrumbs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .breadcrumbs ul li {
+    display: flex;
+    align-items: center;
+    padding: 0 5px; /* Add padding around the breadcrumb items */
+  }
+
+  .breadcrumbs ul li a.breadcrumb-link {
+    text-decoration: none;
+    color: black;
+  }
+
+  .breadcrumbs ul li a.breadcrumb-link:hover {
+    text-decoration: underline;
+  }
+
+  .breadcrumbs ul li.breadcrumb-current {
+    font-weight: bold;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Breadcrumbs",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_home",
+      "label": "Hide Home",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumbs",
+      "category": "Navigation"
+    }
+  ]
+}
+{% endschema %}

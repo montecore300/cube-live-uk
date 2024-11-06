@@ -1,0 +1,144 @@
+{% if product.description != blank %}
+
+  {%- assign description_length = product.description | size -%}
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+
+      .product__description {
+        max-width: 60%;
+        width: calc(60% - var(--grid-desktop-horizontal-spacing) / 2);
+      }
+    }
+  {%- endstyle -%}
+
+  {%- if section.settings.enable_read_more and description_length > 300 -%}
+    {%- style -%}
+      .product__description {
+        position: relative;
+      }
+
+      .product__description-content {
+        max-height: 200px;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        position: relative;
+      }
+
+      .product__description--expanded .product__description-content {
+        max-height: none;
+      }
+
+      .product__description--fade:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+        pointer-events: none;
+      }
+
+      .product__description--expanded .product__description--fade:before {
+        display: none;
+      }
+
+      .read-more {
+        margin-top: 1rem;
+        text-align: center;
+        width: fit-content;
+        cursor: pointer;
+      }
+    {%- endstyle -%}
+  {%- endif -%}
+
+  <div class="product__description rte quick-add-hidden section-{{ section.id }}-padding">
+    <div class="product__description-content product__description--fade">
+      {{ product.description }}
+    </div>
+    {%- if section.settings.enable_read_more and description_length > 300 -%}
+      <span class="button button--full-width button--secondary read-more" onclick="toggleDescription(this)">
+        {{ section.settings.read_more_text }}
+      </span>
+    {%- endif -%}
+  </div>
+
+  <script>
+    function toggleDescription(button) {
+      const descriptionContainer = button.parentElement;
+      descriptionContainer.classList.toggle('product__description--expanded');
+      button.textContent = descriptionContainer.classList.contains('product__description--expanded') 
+        ? '{{ section.settings.read_less_text }}' 
+        : '{{ section.settings.read_more_text }}';
+    }
+  </script>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Description",
+  "tag": "section",
+  "class": "product-description page-width",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Padding settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_read_more",
+      "default": true,
+      "label": "Enable Read More Functionality"
+    },
+    {
+      "type": "text",
+      "id": "read_more_text",
+      "default": "Lees meer",
+      "label": "Read More Text"
+    },
+    {
+      "type": "text",
+      "id": "read_less_text",
+      "default": "Lees minder",
+      "label": "Read Less Text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Description",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,171 @@
+{{ 'component-product-leaseplan.css' | asset_url | stylesheet_tag }}
+{%- assign lease_prices = product.metafields.custom.lease_prices.value | remove: '"' | remove: '[' | remove: ']' | split: ',' -%}
+{%- assign lease_periods = product.metafields.custom.lease_period.value | remove: '"' | remove: '[' | remove: ']' | split: ',' -%}
+
+{%- if lease_prices != empty and lease_periods != empty -%}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .lease-link {
+    background-color: {{ section.settings.button_background_color }};
+    font-weight: {{ section.settings.button_font_weight }};
+  }
+{%- endstyle -%}
+
+<div id="lease-section" class="lease-option section-{{ section.id }}-padding page-width">
+  <div class="grid grid--1-col grid--2-col-tablet">
+    <div class="grid__item">
+      <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.description }}</p>
+      <a target="_blank" href="{{ section.settings.link_url }}" class="lease-link">{{ section.settings.link_text }}</a>
+    </div>
+    
+    <div class="lease-periods grid__item">
+      {%- for period in lease_periods -%}
+        {%- assign period_int = period | plus: 0 | round -%}
+        {%- assign price_int = lease_prices[forloop.index0] | plus: 0 | round -%}
+        <div class="lease-block">
+          <div class="lease-period">{{ period_int }} {{ section.settings.months_text }}</div>
+          <div class="lease-price">{{ price_int }} {{ section.settings.price_suffix }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product leaseplan",
+  "tag": "section",
+  "class": "product-leaseplan",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Lease optie",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h0",
+          "label": "H0"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading Size"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "default": "Het leasen van een fiets biedt financiële flexibiliteit, fiscale voordelen en zorgeloos fietsplezier dankzij inbegrepen onderhoud en reparaties. Ons leaseplan, uitgevoerd via onze partner Leasewinkel.nl, maakt het eenvoudig om een hoogwaardige fiets, zoals een Cube, te kiezen zonder grote eenmalige kosten. Draag bij aan een duurzamere en gezondere levensstijl met fietslease.",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "default": "Bekijk onze aanbieding via leasewinkel.nl",
+      "label": "Link Text"
+    },
+    {
+      "type": "text",
+      "id": "link_url",
+      "default": "https://leasewinkel.nl",
+      "label": "Link URL"
+    },
+    {
+      "type": "text",
+      "id": "months_text",
+      "default": "maanden",
+      "label": "Months Text"
+    },
+    {
+      "type": "text",
+      "id": "price_suffix",
+      "default": "per maand inclusief garantie",
+      "label": "Price Suffix"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "default": "#000000",
+      "label": "Button Background Color"
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button Font Weight",
+      "default": "normal",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "bolder",
+          "label": "Bolder"
+        },
+        {
+          "value": "lighter",
+          "label": "Lighter"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Padding settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product leaseplan",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

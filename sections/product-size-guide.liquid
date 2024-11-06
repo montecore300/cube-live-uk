@@ -1,0 +1,234 @@
+{% assign bike_sizing_iframe_modelcode = product.selected_or_first_available_variant.metafields.custom.akeneo_model_code.value
+  | slice: 0, 6
+%}
+
+{% if bike_sizing_iframe_modelcode != blank %}
+  {% style %}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+    .find-your-size-section {
+      text-align: left;
+    }
+
+    .find-your-size-section h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .find-your-size-section p {
+      font-size: 16px;
+    }
+
+    .find-your-size-section ol {
+      margin-left: 0;
+      font-size: 16px;
+    }
+
+    .find-your-size-section ol li {
+      margin-bottom: 5px;
+    }
+
+    .iframe-resizer {
+      width: 100%;
+      height: 570px;
+      max-width: 850px;
+      margin: 20px 0 0 0;
+    }
+
+    @media (min-width: 330px) {
+      .iframe-resizer {
+        height: 696px;
+      }
+    }
+
+    @media (min-width: 370px) {
+      .iframe-resizer {
+        height: 716px;
+      }
+    }
+
+    @media (min-width: 380px) {
+      .iframe-resizer {
+        height: 730px;
+      }
+    }
+
+    @media (min-width: 390px) {
+      .iframe-resizer {
+        height: 741px;
+      }
+    }
+
+    @media (min-width: 420px) {
+      .iframe-resizer {
+        height: 780px;
+      }
+    }
+
+    @media (min-width: 428px) {
+      .iframe-resizer {
+        height: 788px;
+      }
+    }
+
+    @media (min-width: 440px) {
+      .iframe-resizer {
+        height: 804px;
+      }
+    }
+
+    @media (min-width: 512px) {
+      .iframe-resizer {
+        height: 866px;
+      }
+    }
+
+    @media (min-width: 540px) {
+      .iframe-resizer {
+        height: 901px;
+      }
+    }
+
+    @media (min-width: 570px) {
+      .iframe-resizer {
+        height: 940px;
+      }
+    }
+
+
+    @media (min-width: 600px) {
+      .iframe-resizer {
+        height: 976px;
+      }
+    }
+
+    @media (min-width: 610px) {
+      .iframe-resizer {
+        height: 470px;
+      }
+    }
+
+    @media (min-width: 700px) {
+      .iframe-resizer {
+        height: 470px;
+      }
+    }
+
+    @media (min-width: 750px) {
+      .iframe-resizer {
+        height: 460px;
+      }
+    }
+
+    @media (min-width: 850px) {
+      .iframe-resizer {
+        height: 518px;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .iframe-resizer {
+        height: 650px;
+      }
+    }
+  {% endstyle %}
+  <!-- <script src="https://bikesizing.cube.eu/assets/js/bikesizing.js" async></script> -->
+  <div id="size-guide-section" class="find-your-size-section section-{{ section.id }}-padding page-width">
+    <h2>{{ section.settings.title }}</h2>
+    <p>{{ section.settings.instruction_text }}</p>
+    <ol>
+      <li>{{ section.settings.step1 }}</li>
+      <li>{{ section.settings.step2 }}</li>
+      <li>{{ section.settings.step3 }}</li>
+    </ol>
+    <br>
+    <iframe
+      class="iframe-resizer"
+      data-cube-sizing-iframe
+      allowfullscreen
+      frameborder="0"
+      src="https://bikesizing.cube.eu/iframe/{{ bike_sizing_iframe_modelcode }}/?language=nl&color=%23{{ section.settings.iframe_color | remove: "#" }}"
+    ></iframe>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Find Your Size",
+  "class": "product-size-guide",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Vind jouw maat!"
+    },
+    {
+      "type": "textarea",
+      "id": "instruction_text",
+      "label": "Instruction Text",
+      "default": "Vul hieronder je lengte en binnenbeenlengte in en klik op 'Bereken mijn framemaat' om te zien welke maat jij nodig hebt. Je binnenbeenlengte meet je als volgt op:"
+    },
+    {
+      "type": "text",
+      "id": "step1",
+      "label": "Step 1",
+      "default": "Ga op blote voeten met je hakken tegen de muur staan. Plaats je voeten ongeveer 15 centimeter uit elkaar."
+    },
+    {
+      "type": "text",
+      "id": "step2",
+      "label": "Step 2",
+      "default": "Pak een boek en zet deze tussen je benen, met de korte kant van het boek tegen de muur. Druk het boek naar boven tegen je kruis aan, waarmee je het idee van een fietszadel nabootst."
+    },
+    {
+      "type": "text",
+      "id": "step3",
+      "label": "Step 3",
+      "default": "Meet de lengte van de bovenkant van het boek tot aan de grond, de afstand die je meet is je binnenbeenlengte."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "iframe_color",
+      "label": "Iframe Color",
+      "default": "#00B7ED"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Size guide",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

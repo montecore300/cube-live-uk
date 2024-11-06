@@ -50,7 +50,31 @@
         </fieldset>
       {%- elsif picker_type == 'button' -%}
         <fieldset class="js product-form__input product-form__input--pill">
-          <legend class="form__label">{{ option.name }}</legend>
+
+        {% assign bike_sizing_iframe = product.selected_or_first_available_variant.metafields.custom.akeneo_model_code.value %}
+        {% assign size_guide_text = block.settings.size_guide_text %}
+        {% assign size_guide_text_2 = block.settings.size_guide_text_2 %}
+        {% if bike_sizing_iframe != blank %}
+          <legend class="form__label">
+            <style>
+              .text-find-size {
+                margin-left: 4px;
+                cursor: pointer;
+              }
+              .text-find-size span {
+                text-decoration: underline;
+              }
+            </style>
+            <span class="text-find-size" id="find-your-size-text">{{ size_guide_text }} <span>{{ size_guide_text_2 }}</span> </span>
+            <script>
+              document.getElementById('find-your-size-text').addEventListener('click', function() {
+                document.getElementById('size-guide-section').scrollIntoView({ behavior: 'smooth' });
+              });
+            </script>
+          </legend>
+        {% else %}
+          <legend class="form__label">{{ size_guide_text }}</legend>
+        {% endif %}
           {% render 'product-variant-options',
             product: product,
             option: option,

@@ -450,6 +450,21 @@
   </div>
 </cart-items>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var priceElements = document.querySelectorAll('.cart-item__old-price, .cart-item__final-price, .product-option, .price--end');
+
+    priceElements.forEach(function(priceElement) {
+      var priceText = priceElement.textContent.trim();
+
+      if (priceText.endsWith(',00') || priceText.endsWith('.00')) {
+        priceText = priceText.replace(',00', ',-').replace('.00', ',-');
+        priceElement.textContent = priceText;
+      }
+    });
+  });
+</script>
+
 {% schema %}
 {
   "name": "t:sections.main-cart-items.name",

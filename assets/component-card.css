@@ -5,6 +5,12 @@
   text-decoration: none;
 }
 
+@media screen and (min-width: 750px) {
+  .card-wrapper { 
+    padding: 2rem;
+  }
+}
+
 .card {
   text-decoration: none;
   text-align: var(--text-alignment);
@@ -94,6 +100,14 @@
 .card--card .card__inner .card__media {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+.product-card-wrapper .black-friday-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
 }
 
 .card--standard.card--text {
@@ -313,6 +327,7 @@
 }
 
 .card--standard:not(.card--horizontal) .placeholder-svg {
+  height: auto;
   width: 100%;
 }
 
@@ -389,6 +404,11 @@
 
 .card-information .caption {
   letter-spacing: 0.07rem;
+}
+
+.card-information .price__sale .price-item.price-item--sale.price-item--last,
+.card-information .price__sale .price-item.price-item--regular {
+  font-size: 1.6rem;
 }
 
 .card-article-info {

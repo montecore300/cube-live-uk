@@ -1,0 +1,243 @@
+{{ 'component-product-specifications.css' | asset_url | stylesheet_tag }}
+
+{%- assign block_count = 0 -%}
+{%- for block in section.blocks -%}
+  {%- if block.settings.specification != blank -%}
+    {%- assign block_count = block_count | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .product-specification-container {
+    padding: 5rem 1.5rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    .product-specification-container {
+      padding: 0 5rem;
+    }
+    .product-specification-container {
+      max-width: {{ section.settings.container_max_width }}%;
+      width: calc({{ section.settings.container_max_width }}% - {{ section.settings.grid_spacing }}px / 2);
+    }
+  }
+  .shopify-section.product-specifications { 
+    max-width: var(--page-width);
+    margin: 0 auto;
+  }
+{%- endstyle -%}
+  <div class="color-{{ section.settings.color_scheme }} gradient no-js-hidden product-specification-container">
+<h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
+  {{ section.settings.heading }}
+</h2>
+
+{%- for block in section.blocks -%}
+  {%- if block.type == 'spec' -%}
+    {%- if product.selected_or_first_available_variant.metafields.custom[block.settings.specification] != blank -%}
+      {%- assign spec_value = product.selected_or_first_available_variant.metafields.custom[block.settings.specification].value -%}
+    {%- endif -%}
+
+    {%- if spec_value != blank and product.selected_or_first_available_variant.metafields.custom[block.settings.specification].value != blank -%}
+      <li class="product-specifications--item">
+        <p>{{ block.settings.header }}</p>
+        <p>{{ spec_value }}</p>
+      </li>
+    {%- endif -%}
+  {%- elsif block.type == 'sub_header' -%}
+    <div style="padding-top: {{ block.settings.sub_header_padding_top }}px; padding-bottom: {{ block.settings.sub_header_padding_bottom }}px;">
+      <{{ block.settings.sub_header_style }} style="color: {{ block.settings.sub_header_color }};">
+        {{ block.settings.sub_header }}
+      </{{ block.settings.sub_header_style }}>
+    </div>
+  {%- endif -%}
+{%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Product specifications",
+  "tag": "section",
+  "class": "product-specifications",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Product specifications"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Product specifications",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h0",
+          "label": "H0"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading Size"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "info": "Color scheme for the section",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "label": "Container Max Width (Percentage)",
+      "min": 50,
+      "max": 100,
+      "step": 1,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "grid_spacing",
+      "label": "Grid Horizontal Spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "specification",
+      "settings": [
+        {
+          "type": "text",
+          "id": "header",
+          "default": "Specification header",
+          "label": "example: color, saddle",
+          "info": "example: color, saddle"
+        },
+        {
+          "type": "text",
+          "id": "specification",
+          "default": "Specification value",
+          "label": "add the metafield name for example: akeneo_wielmaat"
+        }
+      ]
+    },
+    {
+      "type": "sub_header",
+      "name": "Sub header",
+      "settings": [
+        {
+          "type": "text",
+          "id": "sub_header",
+          "default": "Sub specification header",
+          "label": "Sub specification header"
+        },
+        {
+          "type": "select",
+          "id": "sub_header_style",
+          "label": "Sub Header Style",
+          "default": "h3",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            }
+          ]
+        },
+        {
+          "type": "color",
+          "id": "sub_header_color",
+          "label": "Sub Header Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "sub_header_padding_top",
+          "label": "Sub Header Padding Top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 10
+        },
+        {
+          "type": "range",
+          "id": "sub_header_padding_bottom",
+          "label": "Sub Header Padding Bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 10
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product specifications",
+      "blocks": [
+        {
+          "type": "spec"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

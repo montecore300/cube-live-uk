@@ -1,0 +1,194 @@
+{% assign accessoires_items = product.selected_or_first_available_variant.metafields.custom.accessories.value %}
+
+{% assign accessoires_length = accessoires_items.size %}
+
+{% if accessoires_items and accessoires_items != blank %}
+  <div class="color-{{ section.settings.color_scheme }} gradient no-js-hidden">
+    <div class="accessoires-items page-width section-{{ section.id }}-padding isolate scroll-trigger animate--slide-in product-recommendations--loaded">
+        <h2 class="accessoires-items__heading inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.accessoires_heading }}
+        </h2>
+        <slider-component class="slider-gutter scroll-trigger animate--slide-in">
+          <ul class="grid product-grid contains-card contains-card--product contains-card--standard grid--4-col-desktop grid--2-col-tablet-down slider slider--tablet {% if accessoires_length > 4 %} grid--3-col-desktop slider--desktop pdp-product-slider {% else %}grid--4-col-desktop{% endif %}" role="list" id="Slider-{{ section.id }}">
+            {% for accessoires_item in accessoires_items %}
+              <li class="grid__item slider__slide relative" id="Slide-{{ section.id }}-{{ forloop.index }}">
+                {% render 'card-product',
+                  card_product: accessoires_item,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating
+                %}
+
+                {%- if accessoires_item.available -%}
+                  <form method="post" action="/cart/add" class="product-form custom-quick-btn-absolute" data-accessory-id="{{ accessoires_item.id }}">
+                    <input type="hidden" name="id" value="{{ accessoires_item.id }}" />
+                    <button type="submit" class="button button--primary custom-quick-btn add-to-cart-btn">
+                      <span class="default-text">
+                        {% render 'icon-cart-empty' %}
+                      </span>
+                      <span class="clicked-text" style="display: none;">
+                        {% render 'icon-checkmark' %}
+                      </span>
+                    </button>
+                  </form>
+                
+                  <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                      document.querySelectorAll('.add-to-cart-btn').forEach(function(button) {
+                        button.addEventListener('click', function(event) {
+                          event.preventDefault();
+                          
+                          var form = this.closest('form');
+                          var formData = new FormData(form);
+                          
+                          fetch('/cart/add.js', {
+                            method: 'POST',
+                            body: formData
+                          })
+                          .then(response => response.json())
+                          .then(data => {
+                            console.log('Item added to cart:', data);
+
+                            var defaultText = button.querySelector('.default-text');
+                            var clickedText = button.querySelector('.clicked-text');
+                            
+                            defaultText.style.display = 'none';
+                            clickedText.style.display = 'inline';
+
+                            setTimeout(function() {
+                              defaultText.style.display = 'inline';
+                              clickedText.style.display = 'none';
+                            }, 4000);
+                          })
+                          .catch(error => {
+                            console.error('Error adding item to cart:', error);
+                          });
+                        });
+                      });
+                    });
+                  </script>
+                {%- endif -%}
+              </li>
+            {% endfor %}
+          </ul>
+          {% if accessoires_length > 4 %}
+            <div class="slider-buttons no-js-hidden">
+              <button
+                type="button"
+                class="slider-button slider-button--prev"
+                name="previous"
+                aria-label="{{ 'general.slider.previous_slide' | t }}"
+                aria-controls="Slider-{{ section.id }}"
+              >
+                {% render 'icon-caret' %}
+              </button>
+
+              <div class="slider-counter caption">
+                <span class="slider-counter--current">1</span>
+                <span aria-hidden="true"> / </span>
+                <span>{{ accessoires_length }}</span>
+              </div>
+
+              <button
+                type="button"
+                class="slider-button slider-button--next"
+                name="next"
+                aria-label="{{ 'general.slider.next_slide' | t }}"
+                aria-controls="Slider-{{ section.id }}"
+              >
+                {% render 'icon-caret' %}
+              </button>
+            </div>
+          {% endif %}
+        </slider-component>
+    </div>
+  </div>
+{% endif %}
+
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Ride Essentials",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Ride Essentials"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "accessoires_heading",
+      "default": "Ride Essentials",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h0",
+          "label": "H0"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "info": "Color scheme for the section",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accessoires",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

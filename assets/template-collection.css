@@ -67,10 +67,6 @@
   margin: 0;
 }
 
-.collection__title.title-wrapper {
-  margin-bottom: 2.5rem;
-}
-
 .collection__title .title:not(:only-child) {
   margin-bottom: 1rem;
 }
@@ -96,4 +92,36 @@
 
 .collection__view-all a:not(.link) {
   margin-top: 1rem;
+}
+
+.collection-description p a {
+  margin: 4px 0;
+  text-decoration: none;
+  color: black;
+  border: 1px solid;
+  padding: 0 14px;
+  border-radius: 25px;
+  display: inline-block;
+  font-weight: normal;
+}
+
+.collection-description p a strong {
+  font-weight: normal;
+}
+
+.collection-description p a:hover {
+  background-color: #1773B0;
+  color: white;
+}
+
+.collection-description p span a {
+  border: none;
+  padding: 0;
+  color: rgb(0, 0, 238);
+  text-decoration: underline;
+}
+
+.collection-description p span a:hover {
+  background-color: #fff;
+  color: rgb(0, 0, 238);
 }

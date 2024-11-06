@@ -1,0 +1,165 @@
+{%- assign html_content_1_length = section.settings.custom_richtext_1 | size -%}
+{%- assign html_content_2_length = section.settings.custom_richtext_2 | size -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .pro-list ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .pro-list ul li {
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .pro-list ul li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Extra-Small" transform="translate(-67, -2)"><g id="Group-Copy-2" transform="translate(67, 2)"><circle id="Oval" fill="%23437D4B" cx="12" cy="12" r="12"/><rect id="Rectangle" fill="%23FFFFFF" x="11.6" y="5" width="1.5" height="14" rx="0.75"/><rect id="Rectangle" fill="%23FFFFFF" transform="translate(12.35, 12) rotate(90) translate(-12.35, -12)" x="11.6" y="5" width="1.5" height="14" rx="0.75"/></g></g></g></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .con-list ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .con-list ul li {
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .con-list ul li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Extra-Small" transform="translate(-91, -3)"><g id="attention-copy" transform="translate(91, 3)"><circle id="Oval" fill="%23E37604" cx="12" cy="12" r="12"/><rect id="Rectangle" fill="%23FFFFFF" transform="translate(17.0029, 10) rotate(-40) translate(-17.0029, -10)" x="16.2528962" y="7" width="1.5" height="6" rx="0.75"/><rect id="Rectangle" fill="%23FFFFFF" transform="translate(17.0029, 14) scale(-1, 1) rotate(-40) translate(-17.0029, -14)" x="16.2528962" y="11" width="1.5" height="6" rx="0.75"/><rect id="Rectangle" fill="%23FFFFFF" transform="translate(12.35, 12) rotate(90) translate(-12.35, -12)" x="11.6" y="5" width="1.5" height="14" rx="0.75"/></g></g></g></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+{%- endstyle -%}
+
+
+{%- if html_content_1_length > 0 or html_content_2_length > 0 -%}
+  <div class="custom-content section-{{ section.id }}-padding page-width">
+    <h2>{{ section.settings.header_text }}</h2>
+    
+    {%- if html_content_1_length > 0 -%}
+      <div class="custom-content-description {% if section.settings.richtext_1_is_pro %}pro-list{% elsif section.settings.richtext_1_is_con %}con-list{% endif %}">
+        {{ section.settings.custom_richtext_1 }}
+      </div>
+    {%- endif -%}
+    
+    {%- if html_content_2_length > 0 -%}
+      <div class="custom-content-description {% if section.settings.richtext_2_is_pro %}pro-list{% elsif section.settings.richtext_2_is_con %}con-list{% endif %}">
+        {{ section.settings.custom_richtext_2 }}
+      </div>
+    {%- endif -%}
+
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Custom Rich Text Content",
+  "tag": "section",
+  "class": "custom-rich-text-content",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Padding settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "header_text",
+      "default": "Custom Rich Text Content",
+      "label": "Header Text"
+    },
+    {
+      "type": "richtext",
+      "id": "custom_richtext_1",
+      "default": "<ul><li>Item 1</li><li>Item 2</li></ul>",
+      "label": "Custom Rich Text 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "richtext_1_is_pro",
+      "default": false,
+      "label": "Display Rich Text 1 as Pros List"
+    },
+    {
+      "type": "checkbox",
+      "id": "richtext_1_is_con",
+      "default": false,
+      "label": "Display Rich Text 1 as Cons List"
+    },
+    {
+      "type": "richtext",
+      "id": "custom_richtext_2",
+      "default": "<ul><li>Item A</li><li>Item B</li></ul>",
+      "label": "Custom Rich Text 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "richtext_2_is_pro",
+      "default": false,
+      "label": "Display Rich Text 2 as Pros List"
+    },
+    {
+      "type": "checkbox",
+      "id": "richtext_2_is_con",
+      "default": false,
+      "label": "Display Rich Text 2 as Cons List"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Rich Text Content",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

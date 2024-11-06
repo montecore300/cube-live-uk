@@ -1,0 +1,228 @@
+<style>
+  .pro-list ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .pro-list ul li {
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .pro-list ul li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Extra-Small" transform="translate(-67, -2)"><g id="Group-Copy-2" transform="translate(67, 2)"><circle id="Oval" fill="%23437D4B" cx="12" cy="12" r="12"/><rect id="Rectangle" fill="%23FFFFFF" x="11.6" y="5" width="1.5" height="14" rx="0.75"/><rect id="Rectangle" fill="%23FFFFFF" transform="translate(12.35, 12) rotate(90) translate(-12.35, -12)" x="11.6" y="5" width="1.5" height="14" rx="0.75"/></g></g></g></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  /* Minus points list styles */
+  .con-list ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .con-list ul li {
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .con-list ul li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Extra-Small" transform="translate(-91, -3)"><g id="attention-copy" transform="translate(91, 3)"><circle id="Oval" fill="%23E37604" cx="12" cy="12" r="12"/><rect id="Rectangle" fill="%23FFFFFF" transform="translate(17.0029, 10) rotate(-40) translate(-17.0029, -10)" x="16.2528962" y="7" width="1.5" height="6" rx="0.75"/><rect id="Rectangle" fill="%23FFFFFF" transform="translate(17.0029, 14) scale(-1, 1) rotate(-40) translate(-17.0029, -14)" x="16.2528962" y="11" width="1.5" height="6" rx="0.75"/><rect id="Rectangle" fill="%23FFFFFF" transform="translate(12.35, 12) rotate(90) translate(-12.35, -12)" x="11.6" y="5" width="1.5" height="14" rx="0.75"/></g></g></g></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+</style>
+
+{%- assign plus_points = product.selected_or_first_available_variant.metafields.custom.akeneo_plus_points.value -%}
+{%- assign minus_points = product.selected_or_first_available_variant.metafields.custom.akeneo_minus_points.value -%}
+
+<!-- Only render the section if either plus points or minus points are not blank -->
+{%- if plus_points != blank or minus_points != blank -%}
+<div class="product-plus-minus-points page-width">
+  <div class="product-plus-minus__container">
+    <div class="product-plus-minus__points">
+
+      <!-- Plus Points -->
+      {%- if plus_points != blank -%}
+      <div class="product-plus-minus__section pro-list">
+        <h3 class="product-plus-minus__heading">{{ section.settings.plus_points_heading }}</h3>
+        <ul class="cube-plus-points">
+          {%- assign clean_plus_points = plus_points | replace: '{"type"=>"root", "children"=>[{"type"=>"paragraph", "children"=>[{"type"=>"text", "value"=>"', '' | replace: '"}]}]}', '' | replace: '\n\n', '' | replace: '&lt;', '<' | replace: '&gt;', '>' -%}
+          {%- assign plus_points_list = clean_plus_points | split: '</li>' -%}
+          {%- for point in plus_points_list -%}
+            <li>{{ point | append: '</li>' | raw }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      {%- endif -%}
+
+      <!-- Minus Points -->
+      {%- if minus_points != blank -%}
+      <div class="product-plus-minus__section con-list">
+        <h3 class="product-plus-minus__heading">{{ section.settings.minus_points_heading }}</h3>
+        <ul class="cube-minus-points">
+          {%- assign clean_minus_points = minus_points | replace: '{"type"=>"root", "children"=>[{"type"=>"paragraph", "children"=>[{"type"=>"text", "value"=>"', '' | replace: '"}]}]}', '' | replace: '\n\n', '' | replace: '&lt;', '<' | replace: '&gt;', '>' -%}
+          {%- assign minus_points_list = clean_minus_points | split: '</li>' -%}
+          {%- for point in minus_points_list -%}
+            <li>{{ point | append: '</li>' | raw }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</div>
+{%- endif -%}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Select all <li> elements inside the plus points and minus points lists
+    var plusPointsItems = document.querySelectorAll('.cube-plus-points li');
+    var minusPointsItems = document.querySelectorAll('.cube-minus-points li');
+
+    // Function to remove empty <li> elements
+    function removeEmptyListItems(items) {
+      items.forEach(function(item) {
+        if (item.innerHTML.trim() === '') {
+          item.remove();
+        }
+      });
+    }
+
+    // Remove empty <li> items from plus and minus points lists
+    removeEmptyListItems(plusPointsItems);
+    removeEmptyListItems(minusPointsItems);
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const plusPointsItems = document.querySelectorAll('.product-plus-minus__item--plus');
+    const minusPointsItems = document.querySelectorAll('.product-plus-minus__item--minus');
+
+    function cleanAndConvert(items) {
+      items.forEach(function(item) {
+        const spanElement = item.querySelector('span');
+        const textContent = spanElement.nextSibling.textContent.trim();
+
+        const regex = /"value"=>"(.*?)"/;
+        const match = textContent.match(regex);
+        
+        if (match && match[1]) {
+          const cleanHTML = match[1]
+            .replace(/\\n/g, '')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .trim();
+
+          item.innerHTML = `<span class="${spanElement.className}">${spanElement.textContent}</span> ${cleanHTML}`;
+        }
+      });
+    }
+
+    cleanAndConvert(plusPointsItems);
+    cleanAndConvert(minusPointsItems);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Plus Minus Points",
+  "tag": "section",
+  "class": "product-plus-minus-points",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Product Plus and Minus Points"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Product Plus and Minus Points",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "plus_points_heading",
+      "label": "Plus Points Heading",
+      "default": "Plus Points"
+    },
+    {
+      "type": "text",
+      "id": "minus_points_heading",
+      "label": "Minus Points Heading",
+      "default": "Minus Points"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h0",
+          "label": "H0"
+        }
+      ],
+      "default": "h2",
+      "label": "Heading Size"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "info": "Color scheme for the section",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Padding settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 10
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plus minus points"
+    }
+  ]
+}
+{% endschema %}

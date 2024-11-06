@@ -359,12 +359,15 @@
             {%- for policy in shop.policies -%}
               {%- if policy != blank -%}
                 <li>
-                  <small class="copyright__content"
-                    ><a href="{{ policy.url }}">{{ policy.title }}</a></small
-                  >
+                  <small class="copyright__content">
+                    <a 
+                      href="{% if policy.url == '/policies/privacy-policy' %}/pages/privacy-en-cookies{% else %}{{ policy.url }}{% endif %}">
+                      {{ policy.title }}
+                    </a>
+                  </small>
                 </li>
               {%- endif -%}
-            {%- endfor -%}
+            {%- endfor -%}            
           </ul>
         {%- endif -%}
       </div>
