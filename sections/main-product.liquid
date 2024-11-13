@@ -117,7 +117,7 @@
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
       {%- assign black_friday_collection = product.collections | where: 'title', 'Black Friday' -%}
       {%- if black_friday_collection.size > 0 -%}
-        <img class="black-friday-tag hidden" src="https://cdn.shopify.com/s/files/1/0602/4871/9579/files/cube-black-friday-label.png?v=1729685955" alt="black friday label" width="80px" height="auto">
+        <img class="black-friday-tag" src="https://cdn.shopify.com/s/files/1/0602/4871/9579/files/cube-black-friday-label.png?v=1729685955" alt="black friday label" width="80px" height="auto">
       {%- endif -%}
       {% render 'product-media-gallery', variant_images: variant_images %}
 

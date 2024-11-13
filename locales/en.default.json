@@ -37,6 +37,12 @@
         "tiktok": "TikTok"
       }
     },
+    "klaviyo": {
+      "product_page_text": "Notify Me When Available",
+      "body_content": "Register to receive a notification when this item comes back in stock.",
+      "button_label": "Notify Me When Available",
+      "subscription_success_label": "You're in! We'll let you know when it's back."
+    },
     "continue_shopping": "Continue shopping",
     "pagination": {
       "label": "Pagination",
@@ -115,6 +121,8 @@
   },
   "products": {
     "product": {
+      "show_inventory": "Show inventory",
+      "lease_text": "Of vanaf {{ first_price }},- per maand o.b.v financiering",
       "add_to_cart": "Add to cart",
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",

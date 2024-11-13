@@ -11,14 +11,14 @@
   assign price_max = product.price_max
   assign available = target.available | default: false
 
-  assign money_price = price | money
-  assign money_price_min = price_min | money
-  assign money_price_max = price_max | money
+  assign money_price = price | money_without_currency
+  assign money_price_min = price_min | money_without_currency
+  assign money_price_max = price_max | money_without_currency
 
   if settings.currency_code_enabled
-    assign money_price = price | money_with_currency
-    assign money_price_min = price_min | money_with_currency
-    assign money_price_max = price_max | money_with_currency
+    assign money_price = price | money_with_currency | remove: '€' | remove: ' £' | remove: ' EUR' | remove: ' GBP'
+    assign money_price_min = price_min | money_with_currency | remove: '€' | remove: ' £' | remove: ' EUR' | remove: ' GBP'
+    assign money_price_max = price_max | money_with_currency | remove: '€' | remove: ' £' | remove: ' EUR' | remove: ' GBP'
   endif
 
   if target == product and product.price_varies
@@ -26,17 +26,14 @@
   endif
 -%}
 
-<div
-  class="
-    price
+<div class="price
     {%- if price_class %} {{ price_class }}{% endif -%}
     {%- if available == false %} price--sold-out{% endif -%}
     {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true %} price--on-sale{% endif -%}
     {%- if compare_at_price > price and product.quantity_price_breaks_configured? %} volume-pricing--sale-badge{% endif -%}
     {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
     {%- if show_badges %} price--show-badge{% endif -%}
-  "
->
+">
   <div class="price__container">
     <div class="price__regular">
       {%- if product.quantity_price_breaks_configured? -%}
@@ -47,40 +44,40 @@
             </span>
             <span>
               <s class="price-item price-item--regular variant-item__old-price">
-                {{ compare_at_price | money }}
+                {{ compare_at_price | money_without_currency | remove: ' £' }} <!-- No Euro sign -->
               </s>
             </span>
           {%- endunless -%}
         {%- endif -%}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
         <span class="price-item price-item--regular">
-          {{- 'products.product.volume_pricing.price_range' | t: minimum: money_price_min, maximum: money_price_max -}}
+          {{- 'products.product.volume_pricing.price_range' | t: minimum: money_price_min, maximum: money_price_max | remove: '£' -}} <!-- No Euro sign -->
         </span>
       {%- else -%}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
         <span class="price-item price-item--regular">
-          {{ money_price }}
+          {{ money_price | remove: '£' }} <!-- No Euro sign -->
         </span>
       {%- endif -%}
     </div>
     <div class="price__sale">
       <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
       <span class="price-item price-item--sale price-item--last">
-        {{ money_price }}
+        {{ money_price | remove: '£' }} <!-- No Euro sign -->
       </span>
       <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
       <span>
         <s class="price-item price-item--regular">
-          {{ compare_at_price | money }}
+          {{ compare_at_price | money_without_currency | remove: '£' }} <!-- No Euro sign -->
         </s>
       </span>
     </div>
     <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
       <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
       <span class="price-item price-item--last">
-        <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
+        <span>{{- product.selected_or_first_available_variant.unit_price | money_without_currency | remove: '£' -}}</span> <!-- No Euro sign -->
         <span aria-hidden="true">/</span>
-        <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+        <span class="visually-hidden">&nbsp;per&nbsp;</span>
         <span>
           {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
             {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
@@ -100,5 +97,3 @@
     </span>
   {%- endif -%}
 </div>
-
-

@@ -55,7 +55,7 @@
         <div class="card__collections">
           {%- assign black_friday_collection = card_product.collections | where: 'title', 'Black Friday' -%}
           {%- if black_friday_collection.size > 0 -%}
-            <img class="black-friday-tag hidden" src="https://cdn.shopify.com/s/files/1/0602/4871/9579/files/cube-black-friday-label.png?v=1729685955" alt="black friday label" width="80px" height="auto">
+            <img class="black-friday-tag" src="https://cdn.shopify.com/s/files/1/0602/4871/9579/files/cube-black-friday-label.png?v=1729685955" alt="black friday label" width="80px" height="auto">
           {%- endif -%}
         </div>
         {%- if card_product.featured_media -%}
