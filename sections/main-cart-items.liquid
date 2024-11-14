@@ -110,18 +110,18 @@
                             {{ 'products.product.price.regular_price' | t }}
                           </span>
                           <s class="cart-item__old-price product-option">
-                            {{- item.original_price | money -}}
+                            {{- item.original_price | money | remove: '£'-}}
                           </s>
                           <span class="visually-hidden">
                             {{ 'products.product.price.sale_price' | t }}
                           </span>
                           <strong class="cart-item__final-price product-option">
-                            {{ item.final_price | money }}
+                            {{ item.final_price | money | remove: '£'}}
                           </strong>
                         </div>
                       {%- else -%}
                         <div class="product-option">
-                          {{ item.original_price | money }}
+                          {{ item.original_price | money | remove: '£'}}
                         </div>
                       {%- endif -%}
 
@@ -181,26 +181,26 @@
                             </dt>
                             <dd>
                               <s class="cart-item__old-price price price--end">
-                                {{ item.original_line_price | money }}
+                                {{ item.original_line_price | money | remove: '£'}}
                               </s>
                             </dd>
                             <dt class="visually-hidden">
                               {{ 'products.product.price.sale_price' | t }}
                             </dt>
                             <dd class="price price--end">
-                              {{ item.final_line_price | money }}
+                              {{ item.final_line_price | money | remove: '£'}}
                             </dd>
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            {{ item.original_line_price | money }}
+                            {{ item.original_line_price | money | remove: '£'}}
                           </span>
                         {%- endif -%}
 
                         {%- if item.variant.available and item.unit_price_measurement -%}
                           <div class="unit-price caption">
                             <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
-                            {{ item.unit_price | money }}
+                            {{ item.unit_price | money | remove: '£'}}
                             <span aria-hidden="true">/</span>
                             <span class="visually-hidden"
                               >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span
@@ -396,26 +396,26 @@
                             </dt>
                             <dd>
                               <s class="cart-item__old-price price price--end">
-                                {{ item.original_line_price | money }}
+                                {{ item.original_line_price | money | remove: '£'}}
                               </s>
                             </dd>
                             <dt class="visually-hidden">
                               {{ 'products.product.price.sale_price' | t }}
                             </dt>
                             <dd class="price price--end">
-                              {{ item.final_line_price | money }}
+                              {{ item.final_line_price | money | remove: '£'}}
                             </dd>
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            {{ item.original_line_price | money }}
+                            {{ item.original_line_price | money | remove: '£'}}
                           </span>
                         {%- endif -%}
 
                         {%- if item.variant.available and item.unit_price_measurement -%}
                           <div class="unit-price caption">
                             <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
-                            {{ item.unit_price | money }}
+                            {{ item.unit_price | money | remove: '£'}}
                             <span aria-hidden="true">/</span>
                             <span class="visually-hidden"
                               >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span

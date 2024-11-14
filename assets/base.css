@@ -1438,6 +1438,19 @@ button.shopify-payment-button__button--unbranded {
   width: fit-content;
 }
 
+.cart-notification__links #cart-notification-button {
+  color: #FFF !important;
+  border: 2px solid #fff !important;
+}
+
+#cart-notification-form .button.button--primary.button--full-width {
+  color: #1773B0 !important;
+}
+
+#cart-notification .modal__close-button {
+  color: #fff;
+}
+
 .share-button__button {
   font-size: 1.4rem;
   display: flex;
@@ -2402,7 +2415,7 @@ ul#tomit_inventory_list li {
 .cart-count-bubble {
   position: absolute;
   background-color: rgb(var(--color-button));
-  color: rgb(var(--color-button-text));
+  color: #1773B0;
   height: 1.7rem;
   width: 1.7rem;
   border-radius: 100%;
@@ -2413,6 +2426,10 @@ ul#tomit_inventory_list li {
   bottom: 0.8rem;
   left: 2.2rem;
   line-height: calc(1 + 0.1 / var(--font-body-scale));
+}
+
+.cart-count-bubble span {
+  color: #1773B0;
 }
 
 /* utility-bar */
