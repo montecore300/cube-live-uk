@@ -1,0 +1,208 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_ezgALb": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_FiEUkh": {
+          "type": "heading",
+          "settings": {
+            "heading": "CUBE FPILINK",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FiEUkh"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/DSC01449.jpg",
+        "image_overlay_opacity": 10,
+        "image_height": "small",
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "rich_text_nU9KLC": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_dTrEJ9": {
+          "type": "heading",
+          "settings": {
+            "heading": "CLICK AND READY TO GO",
+            "heading_size": "h1"
+          }
+        },
+        "text_fNHxGX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The X-Connect lights are easily attached to the bike using CUBE's innovative FPILink technology. This advanced mounting system, integrated into the stem, provides a stable and central position for accessories such as lights. FPILink ensures a tidy and organised cockpit, making it simple to swap out accessories. This system is standard on various models in CUBE's 2025 collection.</p>"
+          }
+        },
+        "text_8aTcaT": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The FPILink range includes various faceplates, a complete stem, an adapter for bike computers, and separate FPILink clips. CUBE also offers two lights without X-Connect, including a lighting set.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dTrEJ9",
+        "text_fNHxGX",
+        "text_8aTcaT"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 48,
+        "padding_bottom": 32
+      }
+    },
+    "multicolumn_kQeKTc": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_AHqcX7": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/564062-XCONNECT_web_11-2024_2-2aad69-original-1731680794.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_Jhqbez": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/564361-93312_D_00-fb9af1-original-1732007643.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_pTaWUy": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/564360-93517_D_00-daab12-original-1732007643.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_AHqcX7",
+        "column_Jhqbez",
+        "column_pTaWUy"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "rich_text_ThFKyB": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_UiQyUU": {
+          "type": "heading",
+          "settings": {
+            "heading": "<strong>WHAT MAKES FPILINK SO CONVENIENT?</strong>",
+            "heading_size": "h1"
+          }
+        },
+        "text_9myedJ": {
+          "type": "text",
+          "settings": {
+            "text": "<ul><li><strong>Centrally positioned on your handlebars:</strong> for a sleek and practical look.</li><li><strong>Easy to mount:</strong> accessories click into place in no time.</li><li><strong>Compatible with multiple accessories:</strong> such as lights, cameras (GoPro-compatible), or other gadgets.</li></ul><p>With the combination of X-Connect and FPILink, you can prepare your bike for any ride, whether it’s your daily commute, adventurous mountain bike trails, or a leisurely weekend ride. Some accessories are already available, with more to be added in the coming months at our store.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_UiQyUU",
+        "text_9myedJ"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 32
+      }
+    },
+    "featured_collection_VdiLiX": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "FPILINK PRODUCTS",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "fpilink",
+        "products_to_show": 11,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 32,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "image_banner_ezgALb",
+    "main",
+    "rich_text_nU9KLC",
+    "multicolumn_kQeKTc",
+    "rich_text_ThFKyB",
+    "featured_collection_VdiLiX"
+  ]
+}

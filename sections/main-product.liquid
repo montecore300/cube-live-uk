@@ -538,7 +538,9 @@
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
             {%- when 'buy_buttons' -%}
               {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
-              <button class="button button--full-width button--secondary" id="openModalButton">{{ 'products.product.show_inventory' | t -}}</button>
+              {% if template != 'product.cadeaubon' %}
+                <button class="button button--full-width button--secondary" id="openModalButton">{{ 'products.product.show_inventory' | t }}</button>
+              {% endif %}
             {%- when 'rating' -%}
               {%- if product.metafields.reviews.rating.value != blank -%}
                 {% liquid

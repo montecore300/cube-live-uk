@@ -358,7 +358,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         recipientFormCollapsed: `{{ 'recipient.form.collapsed' | t }}`,
         countrySelectorSearchCount: `{{ 'localization.country_results_count' | t: count: '[count]' }}`,
       };
+
+      function formatPrices() {
+        var priceElements = document.querySelectorAll('.price-item');
+
+        priceElements.forEach(function(priceElement) {
+          var priceText = priceElement.textContent.trim();
+
+          if (priceText.endsWith(',00') || priceText.endsWith('.00')) {
+            priceText = priceText.replace(',00', ',-').replace('.00', ',-');
+            priceElement.textContent = priceText;
+          }
+        });
+      }
+
     </script>
+
+    <script>
+      function formatPrices() {
+        var priceElements = document.querySelectorAll('.price-item');
+
+        priceElements.forEach(function(priceElement) {
+          var priceText = priceElement.textContent.trim();
+
+          if (priceText.endsWith(',00') || priceText.endsWith('.00')) {
+            priceText = priceText.replace(',00', ',-').replace('.00', ',-');
+            priceElement.textContent = priceText;
+          }
+        });
+      }
+
+      function attachVariantChangeListener() {
+        var variantSelectors = document.querySelectorAll('[name="id"], .product-option input[type="radio"], .product-option select');
+        variantSelectors.forEach(function(variantSelector) {
+          variantSelector.addEventListener('change', function() {
+            setTimeout(formatPrices, 50); // Shorter delay
+          });
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        formatPrices();
+        attachVariantChangeListener();
+
+        // Reapply formatting at shorter intervals to make it more responsive
+        setInterval(formatPrices, 200); // More frequent interval
+      });
+
+      // Observe changes to the product form to re-attach event listeners if necessary
+      var productForm = document.querySelector('form[action="/cart/add"]');
+      if (productForm) {
+        var observer = new MutationObserver(function() {
+          attachVariantChangeListener();
+        });
+        observer.observe(productForm, { childList: true, subtree: true });
+      }
+    </script>
+
     <!-- <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
     <script>
         var klaviyo = klaviyo || [];

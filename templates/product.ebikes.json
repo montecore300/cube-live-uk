@@ -186,70 +186,6 @@
         "padding_bottom": 10
       }
     },
-    "product_specifications_xFjJQT": {
-      "type": "product-specifications",
-      "blocks": {
-        "spec_Fhefjg": {
-          "type": "spec",
-          "settings": {
-            "header": "Brand",
-            "specification": "{{ product.vendor }}"
-          }
-        },
-        "spec_N7PNyF": {
-          "type": "spec",
-          "settings": {
-            "header": "Category",
-            "specification": "{{ product.metafields.specs.category.value }}"
-          }
-        },
-        "spec_gQMNXx": {
-          "type": "spec",
-          "settings": {
-            "header": "Color",
-            "specification": "{{ product.metafields.specs.color.value }}"
-          }
-        },
-        "spec_e37pYa": {
-          "type": "spec",
-          "settings": {
-            "header": "Material",
-            "specification": "{{ product.metafields.specs.material.value }}"
-          }
-        },
-        "spec_ACwKbp": {
-          "type": "spec",
-          "settings": {
-            "header": "Weight",
-            "specification": "{{ product.metafields.specs.weight.value }}"
-          }
-        },
-        "spec_XhHpcN": {
-          "type": "spec",
-          "settings": {
-            "header": "Type",
-            "specification": "{{ product.metafields.specs.type.value }}"
-          }
-        }
-      },
-      "block_order": [
-        "spec_Fhefjg",
-        "spec_N7PNyF",
-        "spec_gQMNXx",
-        "spec_e37pYa",
-        "spec_ACwKbp",
-        "spec_XhHpcN"
-      ],
-      "settings": {
-        "heading": "Product specifications",
-        "heading_size": "h2",
-        "color_scheme": "",
-        "padding_top": 12,
-        "padding_bottom": 12,
-        "container_max_width": 100,
-        "grid_spacing": 0
-      }
-    },
     "rich_text_3dKMUU": {
       "type": "rich-text",
       "blocks": {
@@ -336,6 +272,384 @@
         "padding_bottom": 36
       }
     },
+    "product_specifications_xFjJQT": {
+      "type": "product-specifications",
+      "blocks": {
+        "sub_header_9iahgx": {
+          "type": "sub_header",
+          "settings": {
+            "sub_header": "Frame",
+            "sub_header_style": "h3",
+            "sub_header_color": "#000000",
+            "sub_header_padding_top": 0,
+            "sub_header_padding_bottom": 10
+          }
+        },
+        "spec_KwipFf": {
+          "type": "spec",
+          "settings": {
+            "header": "Model code",
+            "specification": "akeneo_model_code"
+          }
+        },
+        "spec_Jkpxka": {
+          "type": "spec",
+          "settings": {
+            "header": "Model year",
+            "specification": "akeneo_model_year"
+          }
+        },
+        "spec_yggJy4": {
+          "type": "spec",
+          "settings": {
+            "header": "Colour",
+            "specification": "akeneo_colour"
+          }
+        },
+        "spec_FMMKcW": {
+          "type": "spec",
+          "settings": {
+            "header": "Fork",
+            "specification": "akeneo_fork"
+          }
+        },
+        "spec_pgAVh9": {
+          "type": "spec",
+          "settings": {
+            "header": "Shock",
+            "specification": "frame_shock"
+          }
+        },
+        "sub_header_XBTQAD": {
+          "type": "sub_header",
+          "settings": {
+            "sub_header": "E-bike System",
+            "sub_header_style": "h3",
+            "sub_header_color": "#000000",
+            "sub_header_padding_top": 10,
+            "sub_header_padding_bottom": 5
+          }
+        },
+        "spec_MpUaBa": {
+          "type": "spec",
+          "settings": {
+            "header": "Engine",
+            "specification": "akeneo_engine"
+          }
+        },
+        "spec_E4XeHY": {
+          "type": "spec",
+          "settings": {
+            "header": "Battery",
+            "specification": "akeneo_battery"
+          }
+        },
+        "spec_cxXDTV": {
+          "type": "spec",
+          "settings": {
+            "header": "display",
+            "specification": "akeneo_display"
+          }
+        },
+        "sub_header_BRQXcU": {
+          "type": "sub_header",
+          "settings": {
+            "sub_header": "Drivetrain and brakes",
+            "sub_header_style": "h3",
+            "sub_header_color": "#000000",
+            "sub_header_padding_top": 10,
+            "sub_header_padding_bottom": 5
+          }
+        },
+        "spec_UVpkLe": {
+          "type": "spec",
+          "settings": {
+            "header": "Front brake",
+            "specification": "akeneo_front_brake"
+          }
+        },
+        "spec_tMtF9h": {
+          "type": "spec",
+          "settings": {
+            "header": "Rear brake",
+            "specification": "akeneo_primary_rear_brake"
+          }
+        },
+        "spec_aDMAAG": {
+          "type": "spec",
+          "settings": {
+            "header": "Rear derailleur",
+            "specification": "akeneo_derailleur_rear"
+          }
+        },
+        "spec_b8eUzx": {
+          "type": "spec",
+          "settings": {
+            "header": "Front derailleur",
+            "specification": "akeneo_derailleur_front"
+          }
+        },
+        "spec_3UTGkr": {
+          "type": "spec",
+          "settings": {
+            "header": "Integrated shifters/brake levers",
+            "specification": "akeneo_integrated_shifters_brakelevers"
+          }
+        },
+        "spec_ipMXdz": {
+          "type": "spec",
+          "settings": {
+            "header": "Shifters",
+            "specification": "akeneo_shifters"
+          }
+        },
+        "spec_YQt6rA": {
+          "type": "spec",
+          "settings": {
+            "header": "Crankset",
+            "specification": "akeneo_crankset"
+          }
+        },
+        "spec_zJiq6g": {
+          "type": "spec",
+          "settings": {
+            "header": "Cassette",
+            "specification": "akeneo_cassette"
+          }
+        },
+        "spec_nbrDb4": {
+          "type": "spec",
+          "settings": {
+            "header": "Chain",
+            "specification": "akeneo_chain"
+          }
+        },
+        "sub_header_cyTg4N": {
+          "type": "sub_header",
+          "settings": {
+            "sub_header": "Cockpit",
+            "sub_header_style": "h3",
+            "sub_header_color": "#000000",
+            "sub_header_padding_top": 10,
+            "sub_header_padding_bottom": 5
+          }
+        },
+        "spec_VEi4gj": {
+          "type": "spec",
+          "settings": {
+            "header": "Headset",
+            "specification": "akeneo_headset"
+          }
+        },
+        "spec_kLyPqR": {
+          "type": "spec",
+          "settings": {
+            "header": "Handlebar",
+            "specification": "akeneo_handlebar"
+          }
+        },
+        "spec_9tLVcY": {
+          "type": "spec",
+          "settings": {
+            "header": "Stem",
+            "specification": "akeneo_stem"
+          }
+        },
+        "spec_XqF7hH": {
+          "type": "spec",
+          "settings": {
+            "header": "Bar tape or grips",
+            "specification": "akeneo_bartape_or_grips"
+          }
+        },
+        "sub_header_QiJQnL": {
+          "type": "sub_header",
+          "settings": {
+            "sub_header": "Wheels",
+            "sub_header_style": "h3",
+            "sub_header_color": "#000000",
+            "sub_header_padding_top": 10,
+            "sub_header_padding_bottom": 5
+          }
+        },
+        "spec_KY9Lai": {
+          "type": "spec",
+          "settings": {
+            "header": "Wheels",
+            "specification": "akeneo_wheels"
+          }
+        },
+        "spec_9bMAtx": {
+          "type": "spec",
+          "settings": {
+            "header": "Rims",
+            "specification": "akeneo_rims"
+          }
+        },
+        "spec_erUNHe": {
+          "type": "spec",
+          "settings": {
+            "header": "Front hub",
+            "specification": "akeneo_front_hub"
+          }
+        },
+        "spec_hL9QaL": {
+          "type": "spec",
+          "settings": {
+            "header": "Rear Hub",
+            "specification": "akeneo_rear_hub"
+          }
+        },
+        "spec_MijiF8": {
+          "type": "spec",
+          "settings": {
+            "header": "Front tyre",
+            "specification": "akeneo_front_tyre"
+          }
+        },
+        "spec_DQJqn6": {
+          "type": "spec",
+          "settings": {
+            "header": "Rear Tyre",
+            "specification": "akeneo_rear_tyre"
+          }
+        },
+        "sub_header_hf3Wnb": {
+          "type": "sub_header",
+          "settings": {
+            "sub_header": "Other parts",
+            "sub_header_style": "h3",
+            "sub_header_color": "#000000",
+            "sub_header_padding_top": 10,
+            "sub_header_padding_bottom": 5
+          }
+        },
+        "spec_Yagacz": {
+          "type": "spec",
+          "settings": {
+            "header": "Saddle",
+            "specification": "akeneo_saddle"
+          }
+        },
+        "spec_Hy4g6i": {
+          "type": "spec",
+          "settings": {
+            "header": "Seatpost",
+            "specification": "akeneo_seatpost"
+          }
+        },
+        "spec_kEpHWE": {
+          "type": "spec",
+          "settings": {
+            "header": "Seatpost clamp",
+            "specification": "akeneo_seatpost_clamp"
+          }
+        },
+        "spec_f37bxD": {
+          "type": "spec",
+          "settings": {
+            "header": "Pedals",
+            "specification": "akeneo_pedals"
+          }
+        },
+        "spec_c7QhCa": {
+          "type": "spec",
+          "settings": {
+            "header": "Front light",
+            "specification": "akeneo_front_light"
+          }
+        },
+        "spec_XU6iKY": {
+          "type": "spec",
+          "settings": {
+            "header": "Rear light",
+            "specification": "akeneo_rear_light"
+          }
+        },
+        "spec_rymhrg": {
+          "type": "spec",
+          "settings": {
+            "header": "Kickstand",
+            "specification": "akeneo_kickstand"
+          }
+        },
+        "spec_PQLbcf": {
+          "type": "spec",
+          "settings": {
+            "header": "Mudguards",
+            "specification": "akeneo_mudguards"
+          }
+        },
+        "spec_TmFBzp": {
+          "type": "spec",
+          "settings": {
+            "header": "Bell",
+            "specification": "akeneo_bell"
+          }
+        },
+        "spec_qg8yBg": {
+          "type": "spec",
+          "settings": {
+            "header": "Carrier",
+            "specification": "akeneo_carrier"
+          }
+        }
+      },
+      "block_order": [
+        "sub_header_9iahgx",
+        "spec_KwipFf",
+        "spec_Jkpxka",
+        "spec_yggJy4",
+        "spec_FMMKcW",
+        "spec_pgAVh9",
+        "sub_header_XBTQAD",
+        "spec_MpUaBa",
+        "spec_E4XeHY",
+        "spec_cxXDTV",
+        "sub_header_BRQXcU",
+        "spec_UVpkLe",
+        "spec_tMtF9h",
+        "spec_aDMAAG",
+        "spec_b8eUzx",
+        "spec_3UTGkr",
+        "spec_ipMXdz",
+        "spec_YQt6rA",
+        "spec_zJiq6g",
+        "spec_nbrDb4",
+        "sub_header_cyTg4N",
+        "spec_VEi4gj",
+        "spec_kLyPqR",
+        "spec_9tLVcY",
+        "spec_XqF7hH",
+        "sub_header_QiJQnL",
+        "spec_KY9Lai",
+        "spec_9bMAtx",
+        "spec_erUNHe",
+        "spec_hL9QaL",
+        "spec_MijiF8",
+        "spec_DQJqn6",
+        "sub_header_hf3Wnb",
+        "spec_Yagacz",
+        "spec_Hy4g6i",
+        "spec_kEpHWE",
+        "spec_f37bxD",
+        "spec_c7QhCa",
+        "spec_XU6iKY",
+        "spec_rymhrg",
+        "spec_PQLbcf",
+        "spec_TmFBzp",
+        "spec_qg8yBg"
+      ],
+      "settings": {
+        "heading": "Product specifications",
+        "heading_size": "h2",
+        "color_scheme": "",
+        "padding_top": 24,
+        "padding_bottom": 41,
+        "container_max_width": 100,
+        "grid_spacing": 0
+      }
+    },
     "product_link_building_4LqUMR": {
       "type": "product-link-building",
       "settings": {
@@ -377,7 +691,6 @@
     "main",
     "product_anker_8rxRt3",
     "product_plus_minus_yxAEzX",
-    "product_specifications_xFjJQT",
     "rich_text_3dKMUU",
     "product_description_mpVyLK",
     "product_size_guide_Td4Apb",
@@ -385,6 +698,7 @@
     "custom_related_products_rpdPXd",
     "custom_gear_Y76EnY",
     "custom_related_spareparts_UnMLTc",
+    "product_specifications_xFjJQT",
     "product_link_building_4LqUMR",
     "custom_liquid_fWn3Qd",
     "related-products"

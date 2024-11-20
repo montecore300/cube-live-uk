@@ -79,16 +79,20 @@
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
             >
-              {{ block.settings.heading }}
+              {{ block.settings.heading }} 
             </h1>
+            {%- if collection.metafields.custom.description_short.value != blank -%}
+              <p>{{ collection.metafields.custom.description_short.value }}</p>
+            {%- endif -%}
           {%- when 'text' -%}
-            {% assign json_string = collection.metafields.custom.collection_description_short %}
+            {% assign json_string = collection.metafields.custom.description_short %}
             {% assign parts = json_string | split: '"value":"' %}
             {% assign text_part = parts[1] | split: '"}]}' %}
             {% assign cleaned_description = text_part[0] %}
             
             <div class="banner__text rte {{ block.settings.text_style }}">
               <p>{{ cleaned_description }}</p>
+              <p>{{ collection.metafields.custom.description_short.value }}</p>
             </div>
           {%- when 'buttons' -%}
             <div

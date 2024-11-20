@@ -1,1 +1,117 @@
-{"name":"t:sections.header.name","type":"header","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"b5273a68-9c19-406b-8cd1-5b092b9738e6":{"type":"announcement","settings":{"text":"FREE DELIVERY FROM €50","link":""}},"announcement_LcRELQ":{"type":"announcement","settings":{"text":"THE RIGHT CUBE BIKE FOR EVERYONE","link":""}},"announcement_MqTNmk":{"type":"announcement","settings":{"text":"FREE ASSEMBLY AND DELIVERY ON BIKES, INCLUDING ACCESSORIES","link":""}},"announcement_fF4tQa":{"type":"announcement","settings":{"text":"BIKE STORE FOR ADVICE, SERVICE & MAINTENANCE","link":""}},"announcement_nWaRxz":{"type":"announcement","settings":{"text":"THE REAL CUBE BICYCLE SPECIALIST","link":""}}},"block_order":["b5273a68-9c19-406b-8cd1-5b092b9738e6","announcement_LcRELQ","announcement_MqTNmk","announcement_fF4tQa","announcement_nWaRxz"],"settings":{"color_scheme":"scheme-0339273a-ff4c-4dc4-a6c6-b041eb9f446c","show_line_separator":false,"show_social":false,"auto_rotate":true,"change_slides_speed":3,"enable_country_selector":false,"enable_language_selector":false}},"header":{"type":"header","blocks":{"wishlist_king_wishlist_link_block_KN8MLr":{"type":"shopify:\/\/apps\/wishlist-king\/blocks\/wishlist-link-block\/194f5011-a43c-4b22-b12e-eaf20dc4506a","settings":{"icon_color":"#ffffff","icon_size":22,"icon_stroke_width":1,"counter_style":"solid_accent_2","counter_mode":"hide_when_zero","counter_position":"bottom-end","counter_offset_vertical":5,"counter_offset_horizontal":0,"counter_size":17,"counter_font_size":9,"counter_border_width":0}}},"block_order":["wishlist_king_wishlist_link_block_KN8MLr"],"custom_css":[],"settings":{"logo_position":"top-left","menu":"main-menu","menu_type_desktop":"mega","sticky_header_type":"on-scroll-up","show_line_separator":false,"color_scheme":"scheme-55e66c63-3d21-43ee-9c82-1df79c756ed2","menu_color_scheme":"scheme-55e66c63-3d21-43ee-9c82-1df79c756ed2","enable_country_selector":false,"enable_language_selector":false,"mobile_logo_position":"center","margin_bottom":0,"padding_mob_top":16,"padding_mob_bottom":16,"padding_top":10,"padding_bottom":10}}},"order":["announcement-bar","header"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "b5273a68-9c19-406b-8cd1-5b092b9738e6": {
+          "type": "announcement",
+          "settings": {
+            "text": "FREE DELIVERY FROM £50",
+            "link": ""
+          }
+        },
+        "announcement_LcRELQ": {
+          "type": "announcement",
+          "settings": {
+            "text": "THE RIGHT CUBE BIKE FOR EVERYONE",
+            "link": ""
+          }
+        },
+        "announcement_MqTNmk": {
+          "type": "announcement",
+          "settings": {
+            "text": "FREE ASSEMBLY AND DELIVERY ON BIKES, INCLUDING ACCESSORIES",
+            "link": ""
+          }
+        },
+        "announcement_fF4tQa": {
+          "type": "announcement",
+          "settings": {
+            "text": "BIKE STORE FOR ADVICE, SERVICE & MAINTENANCE",
+            "link": ""
+          }
+        },
+        "announcement_nWaRxz": {
+          "type": "announcement",
+          "settings": {
+            "text": "THE REAL CUBE BICYCLE SPECIALIST",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "b5273a68-9c19-406b-8cd1-5b092b9738e6",
+        "announcement_LcRELQ",
+        "announcement_MqTNmk",
+        "announcement_fF4tQa",
+        "announcement_nWaRxz"
+      ],
+      "settings": {
+        "color_scheme": "scheme-0339273a-ff4c-4dc4-a6c6-b041eb9f446c",
+        "show_line_separator": false,
+        "show_social": false,
+        "auto_rotate": true,
+        "change_slides_speed": 3,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "wishlist_king_wishlist_link_block_KN8MLr": {
+          "type": "shopify://apps/wishlist-king/blocks/wishlist-link-block/194f5011-a43c-4b22-b12e-eaf20dc4506a",
+          "settings": {
+            "icon_color": "#ffffff",
+            "icon_size": 22,
+            "icon_stroke_width": 1,
+            "counter_style": "solid_accent_2",
+            "counter_mode": "hide_when_zero",
+            "counter_position": "bottom-end",
+            "counter_offset_vertical": 5,
+            "counter_offset_horizontal": 0,
+            "counter_size": 17,
+            "counter_font_size": 9,
+            "counter_border_width": 0
+          }
+        }
+      },
+      "block_order": [
+        "wishlist_king_wishlist_link_block_KN8MLr"
+      ],
+      "custom_css": [],
+      "settings": {
+        "logo_position": "top-left",
+        "menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": false,
+        "color_scheme": "scheme-55e66c63-3d21-43ee-9c82-1df79c756ed2",
+        "menu_color_scheme": "scheme-55e66c63-3d21-43ee-9c82-1df79c756ed2",
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "mobile_logo_position": "center",
+        "margin_bottom": 0,
+        "padding_mob_top": 16,
+        "padding_mob_bottom": 16,
+        "padding_top": 10,
+        "padding_bottom": 10
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}
