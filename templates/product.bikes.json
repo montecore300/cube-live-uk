@@ -72,6 +72,30 @@
             "icon_5": "return",
             "heading_5": ""
           }
+        },
+        "icon_with_text_TCEYnN": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "vertical",
+            "normal_font_weight": true,
+            "icon_1": "truck",
+            "heading_1": "<strong>Last shipping date 2024:</strong> Wednesday, 18th December",
+            "icon_2": "truck",
+            "heading_2": "<strong>First shipping date 2025:</strong> Friday, 3rd January",
+            "icon_3": "truck",
+            "heading_3": "",
+            "icon_4": "return",
+            "heading_4": "",
+            "icon_5": "return",
+            "heading_5": ""
+          }
+        },
+        "text_9j46r8": {
+          "type": "text",
+          "settings": {
+            "text": "No shipments will be processed during the office closure. Place your orders early to avoid delays.",
+            "text_style": "uppercase"
+          }
         }
       },
       "block_order": [
@@ -79,7 +103,9 @@
         "price",
         "buy_buttons",
         "wishlist_king_wishlist_button_block_hwcfp7",
-        "icon_with_text_MmyL83"
+        "icon_with_text_MmyL83",
+        "icon_with_text_TCEYnN",
+        "text_9j46r8"
       ],
       "custom_css": [
         "/* unvisited link */a:link {color: #00b8ed;}",

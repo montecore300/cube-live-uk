@@ -12,24 +12,6 @@
     "slideshow_AYWAPC": {
       "type": "slideshow",
       "blocks": {
-        "slide_CzqTVG": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/banner_2024_sale_UK.jpg",
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "link": "shopify://collections/nuroad-hybrid",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "scheme-3",
-            "text_alignment_mobile": "center"
-          }
-        },
         "slide_efAWnt": {
           "type": "slide",
           "settings": {
@@ -84,6 +66,24 @@
             "text_alignment_mobile": "center"
           }
         },
+        "slide_CzqTVG": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner_2024_sale_UK.jpg",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/nuroad-hybrid",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-3",
+            "text_alignment_mobile": "center"
+          }
+        },
         "slide_gFTJXd": {
           "type": "slide",
           "settings": {
@@ -104,10 +104,10 @@
         }
       },
       "block_order": [
-        "slide_CzqTVG",
         "slide_efAWnt",
         "slide_ahMg4n",
         "slide_qwWYYE",
+        "slide_CzqTVG",
         "slide_gFTJXd"
       ],
       "settings": {
