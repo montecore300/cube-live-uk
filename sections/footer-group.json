@@ -1,1 +1,71 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","blocks":{"footer-0":{"type":"link_list","settings":{"heading":"Service","menu":"service"}},"62a9fac0-629a-4e53-8174-afdfee24cd39":{"type":"link_list","settings":{"heading":"CUBE Stores UK","menu":"footer"}},"864197a1-7020-4ac5-84b0-ebe01cc4b410":{"type":"link_list","settings":{"heading":"Our stores","menu":"our-store"}},"34401e09-f8cd-44e8-a4e9-6ff3898d7190":{"type":"link_list","settings":{"heading":"Highlights","menu":"categories"}}},"block_order":["footer-0","62a9fac0-629a-4e53-8174-afdfee24cd39","864197a1-7020-4ac5-84b0-ebe01cc4b410","34401e09-f8cd-44e8-a4e9-6ff3898d7190"],"settings":{"color_scheme":"scheme-55e66c63-3d21-43ee-9c82-1df79c756ed2","newsletter_enable":false,"newsletter_heading":"MIS ONZE LAATSTE NIEUWS, ACTIES EN TIPS NIET","enable_follow_on_shop":false,"show_social":true,"enable_country_selector":false,"enable_language_selector":false,"payment_enable":false,"show_policy":true,"margin_top":0,"padding_top":32,"padding_bottom":32}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-0": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Service",
+            "menu": "service"
+          }
+        },
+        "62a9fac0-629a-4e53-8174-afdfee24cd39": {
+          "type": "link_list",
+          "settings": {
+            "heading": "CUBE Stores UK",
+            "menu": "footer"
+          }
+        },
+        "864197a1-7020-4ac5-84b0-ebe01cc4b410": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Our stores",
+            "menu": "our-store"
+          }
+        },
+        "34401e09-f8cd-44e8-a4e9-6ff3898d7190": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Highlights",
+            "menu": "categories"
+          }
+        }
+      },
+      "block_order": [
+        "footer-0",
+        "62a9fac0-629a-4e53-8174-afdfee24cd39",
+        "864197a1-7020-4ac5-84b0-ebe01cc4b410",
+        "34401e09-f8cd-44e8-a4e9-6ff3898d7190"
+      ],
+      "settings": {
+        "color_scheme": "scheme-55e66c63-3d21-43ee-9c82-1df79c756ed2",
+        "newsletter_enable": false,
+        "newsletter_heading": "MIS ONZE LAATSTE NIEUWS, ACTIES EN TIPS NIET",
+        "enable_follow_on_shop": false,
+        "show_social": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": true,
+        "show_policy": true,
+        "margin_top": 0,
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

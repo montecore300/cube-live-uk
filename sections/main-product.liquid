@@ -537,10 +537,62 @@
             {%- when 'variant_picker' -%}
               {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
             {%- when 'buy_buttons' -%}
-              {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
-              {% if template != 'product.cadeaubon' %}
-                <button class="button button--full-width button--secondary" id="openModalButton">{{ 'products.product.show_inventory' | t }}</button>
-              {% endif %}
+              <div class="uk-buy-btns">
+                {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true -%}
+                <div id="wishlist-button-placeholder"></div>
+                <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                    var wishlistButton = document.getElementById('shopify-block-wishlist_king_wishlist_button_block_hwcfp7');
+                    var placeholder = document.getElementById('wishlist-button-placeholder');
+                    if (wishlistButton && placeholder) {
+                      placeholder.appendChild(wishlistButton);
+                    }
+                  });
+                </script>
+              </div>
+              <span class="text-find-size">Retail stock:</span>
+              <div class="uk-retail-stock">
+                <!--todochat: when hover show_in_stock show in_stock_message -->
+                <figure id="show_in_stock" class="relative">i</figure>
+                <div id="in_stock_message" class="absulute">{{ block.settings.tooltip_text }}</div>
+                <a href="https://www.cubestores.co.uk/pages/cubestore-gloucester" target="blank">CUBE Store gloucester </a>
+                <div class="stock-status" id="stock-status">
+                  {% assign selected_variant = product.selected_or_first_available_variant %}
+                  {% if selected_variant.available %}
+                    <span class="stock-status-stock">In stock</span>
+                  {% else %}
+                    <span class="stock-status-no-stock">Out of stock</span>
+                  {% endif %}
+                </div>
+
+                <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                    const variantSelects = document.querySelector('[name="id"]');
+                    const stockStatus = document.getElementById('stock-status');
+                    const variants = JSON.parse('{{ product.variants | json }}');
+
+                    function updateStockStatus(variantId) {
+                      const selectedVariant = variants.find(variant => variant.id == variantId);
+
+                      if (selectedVariant) {
+                        if (selectedVariant.available) {
+                          stockStatus.innerHTML = '<span class="stock-status-stock">In stock</span>';
+                        } else {
+                          stockStatus.innerHTML = '<span class="stock-status-no-stock">Out of stock</span>';
+                        }
+                      }
+                    }
+
+                    const initialVariantId = variantSelects.value;
+                    updateStockStatus(initialVariantId);
+
+                    variantSelects.addEventListener('change', function(event) {
+                      const selectedVariantId = event.target.value;
+                      updateStockStatus(selectedVariantId);
+                    });
+                  });
+                </script>
+              </div>
             {%- when 'rating' -%}
               {%- if product.metafields.reviews.rating.value != blank -%}
                 {% liquid
@@ -805,118 +857,6 @@
     }
   </script>
 
-<script>
-  // Create modal elements
-  const modal = document.createElement('div');
-  modal.classList.add('modal');
-  modal.id = 'inventoryModal';
-
-  const modalOverlay = document.createElement('div');
-  modalOverlay.classList.add('modal__overlay');
-
-  const modalContent = document.createElement('div');
-  modalContent.classList.add('modal-content');
-
-  const modalHeader = document.createElement('div');
-  modalHeader.classList.add('modal__header');
-  modalHeader.innerHTML = '<h2>Winkelvoorraad</h2><button id="closeModalButton" class="modal__close-button">✕</button>';
-
-  const modalBody = document.createElement('div');
-  modalBody.classList.add('modal__body');
-
-  // Create product info section
-  const productInfo = document.createElement('div');
-  productInfo.classList.add('product-info');
-
-  // Thumbnail
-  const thumbnail = document.createElement('img');
-  thumbnail.id = 'productThumbnail';
-  thumbnail.classList.add('product-thumbnail');
-
-  // Product Info Modal wrapper
-  const productInfoModal = document.createElement('div');
-  productInfoModal.classList.add('product-info-modal');
-
-  // Product Header
-  const productHeader = document.createElement('h3');
-  productHeader.id = 'productHeader';
-  productHeader.classList.add('product-header');
-
-  // Product Price
-  const productPrice = document.createElement('p');
-  productPrice.id = 'productPrice';
-  productPrice.classList.add('product-price');
-
-  // Variant Size
-  const variantSize = document.createElement('p');
-  variantSize.id = 'variantSize';
-  variantSize.classList.add('variant-size');
-
-  // Append product info elements to product info modal
-  productInfoModal.appendChild(productHeader);
-  productInfoModal.appendChild(productPrice);
-  productInfoModal.appendChild(variantSize);
-
-  // Append thumbnail and product info modal to product info
-  productInfo.appendChild(thumbnail);
-  productInfo.appendChild(productInfoModal);
-
-  // Append header, product info, and body to modal content
-  modalContent.appendChild(modalHeader);
-  modalContent.appendChild(productInfo);
-  modalContent.appendChild(modalBody);
-  modal.appendChild(modalOverlay);
-  modal.appendChild(modalContent);
-
-  // Function to move existing div into modal body
-  function moveInventoryInfoToModal() {
-    const inventoryInfo = document.getElementById('inventoryLocationInformation');
-    if (inventoryInfo && !modalBody.contains(inventoryInfo)) {
-      modalBody.appendChild(inventoryInfo);
-    }
-  }
-
-  // Function to set product information
-  function setProductInfo(thumbnailSrc, headerText, priceText, variantText) {
-    document.getElementById('productThumbnail').src = thumbnailSrc;
-    document.getElementById('productHeader').textContent = headerText;
-    document.getElementById('productPrice').textContent = priceText;
-    document.getElementById('variantSize').textContent = variantText;
-  }
-
-  // Example usage
-  // setProductInfo('thumbnail.jpg', 'Gazelle Ultimate C8+ HMB Elektrische Fiets', '€ 3.429,-', 'Framemaat: 49 cm (1.59m - 1.70m)');
-
-  // Append modal to body
-  document.body.appendChild(modal);
-
-  // Add event listeners
-  document.getElementById('openModalButton').addEventListener('click', function() {
-    // Get product information dynamically from the product object or DOM
-    const productThumbnail = '{{ product.featured_image | product_img_url: "grande" }}';
-    const productHeader = '{{ product.title }}';
-    const productPrice = '{{ product.price | money }}';
-
-    // Get the selected variant size
-    const selectedVariant = document.querySelector('input[name="Size"]:checked');
-    const variantSize = selectedVariant ? selectedVariant.value : 'N/A';
-
-    setProductInfo(productThumbnail, productHeader, productPrice, `Framemaat: ${variantSize}`);
-    moveInventoryInfoToModal();
-    modal.style.display = 'block';
-    modalOverlay.style.display = 'block';
-    document.body.classList.add('no-scroll');
-  });
-
-  document.body.addEventListener('click', function(event) {
-    if (event.target.id === 'closeModalButton' || event.target === modalOverlay) {
-      modal.style.display = 'none';
-      modalOverlay.style.display = 'none';
-      document.body.classList.remove('no-scroll');
-    }
-  });
-</script>
-
 <style>
   .hidden-s { display: none !important;}
   .no-scroll {
@@ -1146,6 +1086,16 @@ document.addEventListener("DOMContentLoaded", function() {
       "name": "t:sections.main-product.blocks.buy_buttons.name",
       "limit": 1,
       "settings": [
+        {
+          "type": "header",
+          "content": "Tooltip text"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_text",
+          "label": "Tooltip text",
+          "default": "Click the store link for contact information"
+        },
         {
           "type": "checkbox",
           "id": "show_dynamic_checkout",

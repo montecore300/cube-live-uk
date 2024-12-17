@@ -1700,3 +1700,58 @@ a.product__text {
 .media-modal .slider-mobile-navi {
   display: none;
 }
+
+.uk-buy-btns {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.uk-retail-stock {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.uk-retail-stock span {
+  margin: 0;
+  padding: 0;
+}
+
+.uk-retail-stock figure {
+  border: 1px solid;
+  padding: 0;
+  margin: 0;
+  border-radius: 25px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.uk-retail-stock a {
+  text-decoration: underline;
+  font-weight: bold;
+  color: #000 !important; 
+}
+
+.uk-retail-stock .stock-status .stock-status-stock {
+  border: 2px solid;
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: #437D4C;
+  border-color: #437D4C;
+}
+
+.uk-retail-stock .stock-status .stock-status-no-stock {
+  border: 2px solid;
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: #E37603;
+  border-color: #E37603;
+}
+
